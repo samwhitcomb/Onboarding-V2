@@ -1,4 +1,5 @@
-import React, { createPortal, useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import './UIMask.css'
 
 export interface UIElementRegion {
