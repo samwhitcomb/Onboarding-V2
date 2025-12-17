@@ -1,0 +1,1221 @@
+.rangeScreen {
+    width: 100%;
+    height: 1080px;
+    position: relative;
+    text-align: center;
+    font-size: 32px;
+    color: #afb2b8;
+    font-family: 'Acumin Pro ExtraCondensed';
+}
+.gameplay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #000;
+    width: 1920px;
+    height: 1080px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.body {
+    width: 1920px;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+}
+.game {
+    align-self: stretch;
+    display: flex;
+    align-items: flex-start;
+}
+.clubSideBar {
+    height: 1080px;
+    width: 360px;
+    background-color: #1f1f1f;
+    border-right: 2px solid #000;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 128px 16px 32px;
+    gap: 10px;
+}
+.formTitle {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.tabs {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    max-width: 100%;
+}
+.title {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.totalShot {
+    align-self: stretch;
+    height: 44px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.totalShotsWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0px 0px;
+}
+.totalShots {
+    position: relative;
+    line-height: 90%;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.dividerIcon {
+    height: 41.5px;
+    width: 5px;
+    object-fit: contain;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0px 0px;
+    color: #fff;
+}
+.textLinkParent {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    font-size: 18px;
+    color: #fff;
+    font-family: Barlow;
+}
+.textLink {
+    display: flex;
+    align-items: flex-start;
+}
+.textLinkMaster {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.localIcons {
+    height: 24px;
+    width: 24px;
+    position: relative;
+    flex-shrink: 0;
+}
+.icon {
+    position: absolute;
+    height: 70%;
+    width: 70%;
+    top: 15%;
+    right: 15%;
+    bottom: 15%;
+    left: 15%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: contain;
+}
+.label {
+    position: relative;
+    text-decoration: underline;
+    letter-spacing: -0.01em;
+    line-height: 155%;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+.btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.btnmstr {
+    height: 36px;
+    border-radius: 8px;
+    background-color: #1f1f1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.localIcons2 {
+    height: 20px;
+    width: 20px;
+    position: relative;
+}
+.icon2 {
+    position: absolute;
+    height: 70%;
+    width: 70%;
+    top: 15%;
+    right: 15%;
+    bottom: 15%;
+    left: 15%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.frameParent {
+    align-self: stretch;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    color: #f7f7f7;
+    font-family: Barlow;
+}
+.clubDataRowWrapper {
+    align-self: stretch;
+    width: 328px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.clubDataRow {
+    align-self: stretch;
+    flex: 1;
+    border-radius: 8px 8px 0px 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.frameGroup {
+    align-self: stretch;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    padding: 0px 12px 0px 0px;
+    gap: 12px;
+}
+.frameWrapper {
+    display: flex;
+    align-items: center;
+}
+.frameChild {
+    height: 82px;
+    width: 32px;
+    background-color: #c63316;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.frameContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    gap: 16px;
+}
+.iWrapper {
+    width: 50px;
+    display: flex;
+    align-items: center;
+}
+.i2 {
+    position: relative;
+    letter-spacing: -0.01em;
+    line-height: 155%;
+}
+.frameDiv {
+    align-self: stretch;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+.callawayParent {
+    align-self: stretch;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    max-width: 100%;
+}
+.callaway {
+    position: relative;
+    letter-spacing: -0.02em;
+    line-height: 115%;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+.epicForceWrapper {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    font-size: 14px;
+}
+.epicForce {
+    position: relative;
+    letter-spacing: -0.01em;
+    line-height: 155%;
+    font-weight: 500;
+}
+.btnmstr2 {
+    height: 40px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.localIcons3 {
+    height: 24px;
+    width: 24px;
+    position: relative;
+}
+.localIconsChild {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.shotDataList {
+    align-self: stretch;
+    flex: 1;
+    border-radius: 0px 0px 8px 8px;
+    border: 3px solid #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    font-size: 24px;
+    color: #afb2b8;
+}
+.thereIsNo {
+    align-self: stretch;
+    position: relative;
+    letter-spacing: -0.01em;
+    line-height: 155%;
+    font-weight: 500;
+}
+.scrollbar {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+.scrollbar2 {
+    align-self: stretch;
+    width: 1px;
+    position: relative;
+    border-radius: 2px;
+    background-color: #5c616b;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.scrollbar3 {
+    position: absolute;
+    height: 29.41%;
+    width: 100%;
+    top: 14.71%;
+    right: 0%;
+    bottom: 55.89%;
+    left: 0%;
+    border-radius: 2px;
+    background-color: #d3d5d9;
+    overflow: hidden;
+}
+.inGame {
+    align-self: stretch;
+    width: 1560px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    isolation: isolate;
+    color: #fff;
+    font-family: Barlow;
+}
+.gameFullScreen {
+    align-self: stretch;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    z-index: 0;
+}
+.dGameplay {
+    align-self: stretch;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0px 0px 56px;
+    position: relative;
+    isolation: isolate;
+    gap: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    flex-shrink: 0;
+}
+.ballPos {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+    isolation: isolate;
+    z-index: 0;
+    flex-shrink: 0;
+}
+.icons {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    margin: 0 !important;
+    top: 0px;
+    left: 0px;
+    object-fit: cover;
+    z-index: 0;
+    flex-shrink: 0;
+}
+.myBag {
+    width: 134px;
+    margin: 0 !important;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    backdrop-filter: blur(4px);
+    border-radius: 0px 4px 0px 0px;
+    display: flex;
+    align-items: center;
+    isolation: isolate;
+    gap: 10px;
+    z-index: 1;
+    flex-shrink: 0;
+}
+.strongbutton {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    z-index: 0;
+    flex-shrink: 0;
+}
+.masterstrongbutton {
+    flex: 1;
+    background-color: #1f1f1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 46px;
+}
+.iconlabel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.label2 {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.buttonCha {
+    position: relative;
+    letter-spacing: -0.01em;
+    line-height: 155%;
+    flex-shrink: 0;
+}
+.diagonalChild {
+    width: 27px;
+    position: relative;
+    max-height: 100%;
+    object-fit: contain;
+}
+.localIcons4 {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    margin: 0 !important;
+    top: calc(50% - 37px);
+    left: calc(50% - 24px);
+    z-index: 1;
+    flex-shrink: 0;
+}
+.icon3 {
+    position: absolute;
+    height: 42%;
+    width: 70%;
+    top: 29%;
+    right: 15%;
+    bottom: 29%;
+    left: 15%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.dDispersion {
+    height: 1080px;
+    width: 1920px;
+    background-color: #1f1f1f;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0px 16px 16px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+.topsideView {
+    height: 1128px;
+    width: 1920px;
+    background-color: #1f1f1f;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.clubData {
+    height: 1080px;
+    width: 1920px;
+    background-color: #1f1f1f;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px 16px 16px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+.metrics {
+    height: 1080px;
+    width: 1920px;
+    background-color: #1f1f1f;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 16px 16px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+.bottomMetrics {
+    align-self: stretch;
+    height: 308px;
+    background-color: #1f1f1f;
+    border-top: 2px solid #000;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 32px 32px;
+    z-index: 1;
+    font-size: 16px;
+    color: #afb2b8;
+}
+.bottomMetrics2 {
+    align-self: stretch;
+    flex: 1;
+    border-radius: 8px 8px 0px 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.metricListRow {
+    align-self: stretch;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.metricList {
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 10px;
+    max-width: 100%;
+}
+.metricTypes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.metrics2 {
+    width: 168px;
+    height: 116px;
+    border-radius: 8px;
+    background-color: #000;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.metrics3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0px 0px;
+    gap: 12px;
+}
+.launchAng {
+    position: relative;
+    letter-spacing: -0.02em;
+    line-height: 115%;
+    text-transform: uppercase;
+}
+.metric {
+    width: 109px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 56px;
+    color: #fff;
+    font-family: 'Acumin Pro ExtraCondensed';
+}
+.unitSystem {
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 0px 8px;
+    box-sizing: border-box;
+    font-size: 12px;
+    font-family: Barlow;
+}
+.yards {
+    position: relative;
+    letter-spacing: -0.01em;
+    line-height: 155%;
+    font-weight: 500;
+    transform:  rotate(-90deg);
+}
+.metric3 {
+    width: 109px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    color: #fff;
+    font-family: 'Acumin Pro ExtraCondensed';
+}
+.settingButton {
+    align-self: stretch;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 0px 16px 16px;
+}
+.btnIcon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+.navigationBar3 {
+    margin: 0 !important;
+    position: absolute;
+    top: 246px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 2;
+}
+.masternavigationBar {
+    width: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.navigationButton {
+    border-radius: 0px 8px 8px 0px;
+    background-color: #a41628;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4px 12px 4px 4px;
+}
+.navigationIconWrapper {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.navigationIcon {
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+}
+.vectorIcon {
+    position: absolute;
+    height: 80.75%;
+    width: 38.75%;
+    top: 9.62%;
+    right: 35.84%;
+    bottom: 9.63%;
+    left: 25.41%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.options {
+    border-radius: 0px 0px 8px 0px;
+    background-color: #1f1f1f;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.navigationButton2 {
+    width: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4px;
+    box-sizing: border-box;
+}
+.navigationIconContainer {
+    align-self: stretch;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.path16032Icon {
+    position: absolute;
+    height: 80.75%;
+    width: 70.25%;
+    top: 9.61%;
+    right: 14.37%;
+    bottom: 9.64%;
+    left: 15.38%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.layer1Icon {
+    position: absolute;
+    height: 78%;
+    width: 78%;
+    top: 11.54%;
+    right: 10.46%;
+    bottom: 10.46%;
+    left: 11.54%;
+    border-radius: 8px;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.layer1Icon2 {
+    position: absolute;
+    height: 64.75%;
+    width: 77.75%;
+    top: 17.31%;
+    right: 10.71%;
+    bottom: 17.94%;
+    left: 11.54%;
+    border-radius: 8px;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.layer1Icon3 {
+    position: absolute;
+    height: 36.75%;
+    width: 78%;
+    top: 30.77%;
+    right: 10.46%;
+    bottom: 32.48%;
+    left: 11.54%;
+    border-radius: 8px;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.layer1Icon4 {
+    position: absolute;
+    height: 76.75%;
+    width: 78%;
+    top: 11.54%;
+    right: 10.46%;
+    bottom: 11.71%;
+    left: 11.54%;
+    border-radius: 8px;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.navigationButton7 {
+    width: 64px;
+    border-radius: 0px 0px 8px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4px;
+    box-sizing: border-box;
+}
+.layer1Icon5 {
+    position: absolute;
+    height: 70.5%;
+    width: 70.5%;
+    top: 15.38%;
+    right: 14.12%;
+    bottom: 14.12%;
+    left: 15.38%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1920px;
+    display: flex;
+    align-items: center;
+    padding: 24px 0px;
+    box-sizing: border-box;
+    font-size: 20px;
+    color: #fff;
+    font-family: Barlow;
+}
+.header2 {
+    align-self: stretch;
+    width: 1920px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0px;
+}
+.left {
+    align-self: stretch;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    padding: 0px 32px 0px 12px;
+    box-sizing: border-box;
+    text-align: left;
+}
+.headerContainer {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+.playercards {
+    width: 348px;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+.backButton {
+    border-radius: 4px 0px 0px 4px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    padding: 8px 32px 8px 8px;
+}
+.localIcons5 {
+    height: 32px;
+    width: 32px;
+    position: relative;
+}
+.icon4 {
+    position: absolute;
+    height: 70%;
+    width: 41.88%;
+    top: 15%;
+    right: 29.13%;
+    bottom: 15%;
+    left: 29%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.playercard {
+    height: 120px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 12px 0px 12px 64px;
+    box-sizing: border-box;
+    position: relative;
+    isolation: isolate;
+    margin-left: -32px;
+}
+.playercardInner {
+    flex: 1;
+    background-color: #000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 0;
+    flex-shrink: 0;
+}
+.frameWrapper2 {
+    align-self: stretch;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.jacyJacksonWrapper {
+    align-self: stretch;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 0px 48px;
+    box-sizing: border-box;
+}
+.avatartypes {
+    height: 100px;
+    width: 100px;
+    margin: 0 !important;
+    position: absolute;
+    top: calc(50% - 50px);
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 300px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    box-sizing: border-box;
+    z-index: 1;
+    flex-shrink: 0;
+}
+.avatartypesChild {
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    border-radius: 50%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
+}
+.mid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #f7f7f7;
+    font-family: 'Acumin Pro ExtraCondensed';
+}
+.ballStatusBar {
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ballStatus {
+    align-self: stretch;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ballStatus2 {
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0px 8px 8px;
+    gap: 10px;
+}
+.ballStatusIcon {
+    height: 40px;
+    border-radius: 8px;
+    background-color: #22c55e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.readyToHit {
+    height: 22px;
+    width: 147px;
+    position: relative;
+    line-height: 90%;
+    text-transform: uppercase;
+    display: inline-block;
+    font-weight: 700;
+    flex-shrink: 0;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.right {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 24px;
+}
+.targetlayoutsettingsdevice {
+    height: 90px;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0px 32px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.targetButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.container {
+    width: 100%;
+    height: 48px;
+    border-radius: 8px;
+    background-color: #a41628;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    box-sizing: border-box;
+    gap: 8px;
+    max-width: 100%;
+}
+.localIconsItem {
+    position: absolute;
+    height: 75%;
+    width: 75%;
+    top: 12.5%;
+    right: 12.5%;
+    bottom: 12.5%;
+    left: 12.5%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.metric15 {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+.metric16 {
+    width: 30px;
+    position: relative;
+    letter-spacing: -0.01em;
+    line-height: 155%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.unitSystem10 {
+    width: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+}
+.yards10 {
+    align-self: stretch;
+    height: 22px;
+    position: relative;
+    letter-spacing: -0.01em;
+    line-height: 155%;
+    font-weight: 500;
+    display: inline-block;
+    flex-shrink: 0;
+    transform:  rotate(-90deg);
+}
+.layoutButtons {
+    border-radius: 4px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+.localIconsInner {
+    position: absolute;
+    height: 75%;
+    width: 78.13%;
+    top: 12.5%;
+    right: 12.58%;
+    bottom: 12.5%;
+    left: 9.3%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.dividerIcon2 {
+    height: 46px;
+    width: 0px;
+    object-fit: contain;
+}
+.layoutButtons2 {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.icon6 {
+    position: absolute;
+    height: 66.56%;
+    width: 66.56%;
+    top: 16.67%;
+    right: 16.77%;
+    bottom: 16.77%;
+    left: 16.67%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: contain;
+}
+.icon8 {
+    position: absolute;
+    height: 66.56%;
+    width: 66.56%;
+    top: 16.67%;
+    right: 16.77%;
+    bottom: 16.77%;
+    left: 16.67%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.btn2 {
+    width: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.btnmstr3 {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 17px;
+    box-sizing: border-box;
+}
+.localIcons12 {
+    height: 32px;
+    width: 32px;
+    position: relative;
+    flex-shrink: 0;
+}
+.icon9 {
+    position: absolute;
+    height: 70%;
+    width: 61.25%;
+    top: 15%;
+    right: 19.38%;
+    bottom: 15%;
+    left: 19.37%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: contain;
+}
+.deviceconnectionstatus {
+    border-radius: 32px;
+    background-color: #22c55e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+.icons2 {
+    height: 40px;
+    width: 40px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.vectorIcon2 {
+    position: absolute;
+    width: 62.5%;
+    top: calc(50% - 11.25px);
+    right: 20.83%;
+    left: 16.67%;
+    max-width: 100%;
+    overflow: hidden;
+    height: 22.5px;
+}
+

@@ -1,0 +1,64 @@
+/* Ensure quit confirmation appears above all other content */
+.quit-confirmation-modal {
+  z-index: 2147482998 !important;
+}
+
+.quit-confirmation-modal .modal-overlay {
+  z-index: 2147482998 !important;
+}
+
+.quit-confirmation-modal .modal {
+  z-index: 2147482999 !important;
+  position: relative;
+}
+
+.quit-confirmation-modal .modal {
+  pointer-events: auto;
+}
+
+.quit-confirmation-modal .modal-overlay {
+  pointer-events: auto;
+}
+
+.quit-confirmation {
+  padding: var(--spacing-2xl);
+  text-align: center;
+  max-width: 480px;
+}
+
+.quit-confirmation__title {
+  font-size: 2rem;
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.02em;
+  color: var(--text-white);
+}
+
+.quit-confirmation__body {
+  color: var(--text-grey);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-2xl);
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quit-confirmation__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: stretch;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.quit-confirmation__actions .button {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 1rem;
+  font-weight: var(--font-medium);
+}
+
+

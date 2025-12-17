@@ -1,0 +1,407 @@
+.courseplay-warmup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-content);
+}
+
+.courseplay-warmup--putting {
+  position: relative;
+}
+
+.courseplay-warmup--putting::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/images/Putting.png') center center / cover no-repeat;
+  opacity: 0;
+  animation: fadeInPutting 2s ease-in-out forwards;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes fadeInPutting {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.courseplay-warmup__info {
+  position: absolute;
+  top: var(--spacing-lg);
+  left: var(--spacing-lg);
+  z-index: var(--z-popup);
+}
+
+.hole-info {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.hole-info__label {
+  background-color: var(--accent-red);
+  color: var(--text-white);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 4px;
+  font-weight: var(--font-bold);
+  font-size: 1.1rem;
+}
+
+.hole-info__par {
+  color: var(--text-white);
+  font-size: 1.1rem;
+  font-weight: var(--font-semibold);
+  display: flex;
+  align-items: center;
+}
+
+.courseplay-warmup__progress {
+  position: absolute;
+  top: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  z-index: var(--z-popup);
+}
+
+.shot-counter {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--spacing-sm);
+  color: var(--accent-green);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  background-color: var(--accent-green);
+  transition: width var(--transition-normal);
+}
+
+.courseplay-warmup__actions {
+  position: absolute;
+  bottom: var(--spacing-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-popup);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.courseplay-warmup__shot-button {
+  min-width: 250px;
+}
+
+.courseplay-warmup__shot-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.shot-numbers {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.shot-number {
+  color: var(--accent-green);
+  font-size: 1.2rem;
+  font-weight: var(--font-semibold);
+  animation: fadeIn var(--transition-normal);
+}
+
+.warmup-tip {
+  max-width: 350px;
+}
+
+.warmup-tip p {
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+}
+
+.warmup-tip strong {
+  color: var(--accent-green);
+}
+
+.hole-info__distance {
+  color: var(--text-grey);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Scene Setting Phase */
+.courseplay-warmup--scene-setting {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.scene-setting {
+  position: relative;
+  z-index: var(--z-popup);
+}
+
+.scene-setting__content {
+  text-align: center;
+  max-width: 600px;
+  padding: var(--spacing-2xl);
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scene-setting__title {
+  font-size: 2.5rem;
+  font-weight: var(--font-bold);
+  color: var(--text-white);
+  margin-bottom: var(--spacing-md);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.scene-setting__subtitle {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--accent-green);
+  margin-bottom: var(--spacing-xl);
+}
+
+.scene-setting__description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Controls intro overlay (shown during scene setting) */
+.controls-intro--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-popup);
+  pointer-events: none; /* let the scene setting stay clickable-through except the content */
+}
+
+.controls-intro__content {
+  text-align: center;
+  max-width: 450px;
+  padding: var(--spacing-2xl);
+  background: rgba(28, 28, 30, 0.9);
+  backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.5s ease-out;
+  pointer-events: auto; /* allow interaction on the content */
+}
+
+.controls-intro__title {
+  font-size: 1.5rem;
+  font-weight: var(--font-bold);
+  color: var(--text-white);
+  margin-bottom: var(--spacing-md);
+}
+
+.controls-intro__description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-grey);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Tooltip Phase */
+.courseplay-warmup--tooltip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tooltip-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-popup);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.tooltip-highlight {
+  position: absolute;
+  border: 2px solid var(--accent-green);
+  border-radius: var(--radius-md);
+  box-shadow: 
+    0 0 0 4px rgba(48, 209, 88, 0.2),
+    0 0 30px rgba(48, 209, 88, 0.3),
+    0 0 0 9999px rgba(0, 0, 0, 0.4);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: highlightPulse 2s ease-in-out infinite;
+}
+
+.tooltip-highlight:hover {
+  border-color: #4ade80;
+  box-shadow: 
+    0 0 0 6px rgba(48, 209, 88, 0.35),
+    0 0 50px rgba(48, 209, 88, 0.5),
+    0 0 0 9999px rgba(0, 0, 0, 0.4);
+  animation: none;
+}
+
+.tooltip-highlight--waypoint {
+  /* Position for waypoint button - adjust based on actual UI */
+  top: 51%;
+  right: 0.8%;
+  width: 360px;
+  height: 635px;
+}
+
+.tooltip-highlight--map {
+  /* Position for map control - adjust based on actual UI */
+  top: 45.6%;
+  right: 0.8%;
+  width: 255px;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  overflow: visible;
+}
+
+.tooltip-highlight--putting {
+  /* Position for green reading tools - same as dispersion view */
+  top: 45.6%;
+  right: 0.8%;
+  width: 255px;
+  height: 70px;
+}
+
+.tooltip-highlight__row {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.tooltip-highlight__row:last-child {
+  border-right: none;
+}
+
+.tooltip-highlight__row:hover {
+  background: rgba(48, 209, 88, 0.25);
+}
+
+.tooltip-highlight__label {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.85);
+  color: var(--text-white);
+  font-weight: var(--font-semibold);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes highlightPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 0 4px rgba(48, 209, 88, 0.2),
+      0 0 30px rgba(48, 209, 88, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 6px rgba(48, 209, 88, 0.3),
+      0 0 50px rgba(48, 209, 88, 0.5);
+  }
+}
+
+.tooltip-callout {
+  position: absolute;
+  max-width: 320px;
+  padding: var(--spacing-lg);
+  background: rgba(28, 28, 30, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.tooltip-callout--waypoint {
+  top: 60%;
+  right: 20%;
+  transform: translateY(-50%);
+}
+
+.tooltip-callout--map {
+  top: 45%;
+  right: 20%;
+}
+
+.tooltip-callout--putting {
+  top: 35%;
+  right: 20%;
+  transform: translateY(-50%);
+}
+
+.tooltip-callout h4 {
+  font-size: 1.1rem;
+  font-weight: var(--font-bold);
+  color: var(--accent-green);
+  margin-bottom: var(--spacing-sm);
+}
+
+.tooltip-callout p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-grey);
+  margin-bottom: var(--spacing-lg);
+}
+

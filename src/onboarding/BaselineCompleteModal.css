@@ -1,0 +1,116 @@
+.baseline-complete-modal__exit {
+  position: absolute;
+  top: var(--spacing-lg);
+  left: var(--spacing-lg);
+  background: transparent;
+  border: none;
+  color: var(--text-grey);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.baseline-complete-modal__exit:hover {
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.baseline-complete-modal__content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.baseline-complete-modal__checkmark {
+  margin-bottom: var(--spacing-xl);
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.baseline-complete-modal__flight-complete {
+  margin-bottom: var(--spacing-xl);
+}
+
+.baseline-complete-modal__flight-label {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-green);
+  margin-bottom: var(--spacing-sm);
+}
+
+.baseline-complete-modal__flight-title {
+  font-size: 1.5rem;
+  font-weight: var(--font-bold);
+  color: var(--text-white);
+  margin: 0;
+}
+
+.baseline-complete-modal__divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  margin: var(--spacing-xl) auto;
+}
+
+.baseline-complete-modal__next-flight {
+  margin-bottom: var(--spacing-xl);
+}
+
+.baseline-complete-modal__next-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-grey);
+  margin-bottom: var(--spacing-sm);
+}
+
+.baseline-complete-modal__next-title {
+  font-size: 1.3rem;
+  font-weight: var(--font-semibold);
+  color: var(--text-white);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.baseline-complete-modal__next-subtitle {
+  font-size: 1rem;
+  color: var(--accent-green);
+  font-style: italic;
+  margin: 0;
+}
+
+.baseline-complete-modal__segue {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-grey);
+  margin-bottom: var(--spacing-lg);
+}
+
+.baseline-complete-modal__awaits {
+  font-size: 1.4rem;
+  font-weight: var(--font-semibold);
+  color: var(--text-white);
+  font-style: italic;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.baseline-complete-modal__actions {
+  display: flex;
+  justify-content: center;
+}
+

@@ -1,0 +1,40 @@
+.welcome-modal__content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.welcome-modal__headline {
+  font-size: 2rem;
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-xl);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.welcome-modal__body {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: var(--spacing-2xl);
+  text-align: left;
+  color: var(--text-grey);
+}
+
+.welcome-modal__body p {
+  margin-bottom: var(--spacing-lg);
+}
+
+.welcome-modal__time {
+  font-size: 1rem;
+  color: var(--accent-green);
+  font-weight: var(--font-medium);
+}
+
+.welcome-modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+

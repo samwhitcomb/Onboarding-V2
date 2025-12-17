@@ -1,0 +1,167 @@
+.five-shot-baseline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-content);
+  pointer-events: none;
+}
+
+.five-shot-baseline__progress {
+  position: absolute;
+  top: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  z-index: var(--z-popup);
+  pointer-events: auto;
+}
+
+.shot-counter {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--spacing-sm);
+  color: var(--accent-green);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  background-color: var(--accent-green);
+  transition: width var(--transition-normal);
+}
+
+.five-shot-baseline__actions {
+  position: absolute;
+  bottom: var(--spacing-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-popup);
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.five-shot-baseline__shot-button {
+  min-width: 250px;
+}
+
+.shot-numbers {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.shot-number {
+  color: var(--accent-green);
+  font-size: 1.2rem;
+  font-weight: var(--font-semibold);
+  animation: fadeIn var(--transition-normal);
+}
+
+.feature-popup {
+  max-width: 400px;
+  pointer-events: auto;
+}
+
+.feature-popup--small {
+  max-width: 300px;
+}
+
+.feature-popup p {
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+}
+
+.feature-popup strong {
+  color: var(--accent-green);
+}
+
+.feature-popup__button {
+  width: 100%;
+  margin-top: var(--spacing-sm);
+}
+
+.impact-cam-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  animation: fadeIn var(--transition-normal);
+  pointer-events: auto;
+}
+
+.impact-cam-image {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Transparent Narrative Message */
+.club-narrative-popup {
+  pointer-events: none;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transform: translate(-50%, -50%);
+}
+
+.club-narrative-message {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  text-align: center;
+}
+
+.club-narrative-message p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text-white);
+  font-weight: var(--font-medium);
+}
+
+/* Prompt hover callout */
+.prompt-hover-callout {
+  font-size: 0.75rem;
+  font-weight: var(--font-regular);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: auto;
+}
+
+/* Record Shot button disabled state */
+.five-shot-baseline__shot-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+

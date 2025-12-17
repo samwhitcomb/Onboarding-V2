@@ -1,0 +1,33 @@
+.celebration-modal__content {
+  text-align: center;
+}
+
+.celebration-modal__icon {
+  font-size: 5rem;
+  color: var(--accent-green);
+  margin-bottom: var(--spacing-lg);
+  animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.celebration-modal__title {
+  font-size: 2.5rem;
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.02em;
+}
+
+.celebration-modal__body {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text-grey);
+}
+

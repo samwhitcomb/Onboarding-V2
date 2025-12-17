@@ -1,0 +1,83 @@
+.personalized-prep-modal__content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.personalized-prep-modal__title {
+  font-size: 2.5rem;
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: -0.02em;
+  color: var(--accent-green);
+}
+
+.personalized-prep-modal__hole-info {
+  margin-bottom: var(--spacing-xl);
+}
+
+.personalized-prep-modal__description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-grey);
+  font-style: italic;
+}
+
+.personalized-prep-modal__tip {
+  background-color: rgba(44, 44, 46, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  text-align: left;
+  box-shadow: var(--shadow-sm);
+}
+
+.personalized-prep-modal__tip-title {
+  font-size: 1.3rem;
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-lg);
+  color: var(--accent-green);
+  letter-spacing: -0.01em;
+}
+
+.personalized-prep-modal__dispersion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.personalized-prep-modal__dispersion-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: var(--spacing-sm);
+}
+
+.personalized-prep-modal__dispersion-label {
+  font-size: 0.85rem;
+  color: var(--text-grey);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.personalized-prep-modal__tip-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-white);
+}
+
+.personalized-prep-modal__tip-text strong {
+  color: var(--accent-green);
+  font-size: 1.2rem;
+}
+
+.personalized-prep-modal__actions {
+  display: flex;
+  justify-content: center;
+}
+

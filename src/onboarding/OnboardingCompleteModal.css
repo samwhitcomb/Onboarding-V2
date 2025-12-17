@@ -1,0 +1,104 @@
+.onboarding-complete-modal__content {
+  text-align: center;
+  max-width: 520px;
+}
+
+.onboarding-complete-modal__icon {
+  margin-bottom: var(--spacing-lg);
+  animation: checkPop 0.6s ease-out;
+}
+
+@keyframes checkPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.onboarding-complete-modal__eyebrow {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-green);
+  margin-bottom: var(--spacing-sm);
+}
+
+.onboarding-complete-modal__title {
+  font-size: 2rem;
+  font-weight: var(--font-bold);
+  color: var(--text-white);
+  margin-bottom: var(--spacing-lg);
+}
+
+.onboarding-complete-modal__message {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-grey);
+  margin-bottom: var(--spacing-xl);
+}
+
+.onboarding-complete-modal__next-steps {
+  text-align: left;
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.onboarding-complete-modal__next-title {
+  font-size: 0.9rem;
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-grey);
+  margin-bottom: var(--spacing-md);
+}
+
+.onboarding-complete-modal__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.onboarding-complete-modal__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-white);
+}
+
+.onboarding-complete-modal__list-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.onboarding-complete-modal__list strong {
+  color: var(--accent-green);
+}
+
+.onboarding-complete-modal__freedom {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-grey);
+  font-style: italic;
+  margin-bottom: var(--spacing-xl);
+}
+
+.onboarding-complete-modal__actions {
+  display: flex;
+  justify-content: center;
+}
+

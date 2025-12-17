@@ -1,0 +1,38 @@
+.club-selection-intro-modal__content {
+  text-align: center;
+  padding: var(--spacing-xl);
+}
+
+.club-selection-intro-modal__title {
+  font-size: 2rem;
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-xl);
+  letter-spacing: -0.02em;
+  color: var(--text-white);
+}
+
+.club-selection-intro-modal__body {
+  margin-bottom: var(--spacing-xl);
+}
+
+.club-selection-intro-modal__body p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-white);
+}
+
+.club-selection-intro-modal__body p:last-child {
+  margin-bottom: 0;
+}
+
+.club-selection-intro-modal__body strong {
+  color: var(--accent-green);
+}
+
+.club-selection-intro-modal__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xl);
+}
+

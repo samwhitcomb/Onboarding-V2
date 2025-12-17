@@ -1,0 +1,148 @@
+@font-face {
+  font-family: 'Acumin Pro ExtraCond';
+  src: url('../../Fonts/Acumin-Pro-ExtraCond-Bold-Italic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  z-index: var(--z-modal);
+  pointer-events: none;
+}
+
+.loading-overlay__gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.6) 80%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.loading-overlay__title-container {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.loading-overlay__title {
+  font-family: 'Acumin Pro ExtraCond', sans-serif;
+  font-size: 4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.em;
+  font-style: italic;
+  text-align: left;
+  color: var(--text-white);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.loading-overlay__description {
+  font-size: 1.7rem;
+  line-height: 1.2;
+  margin-top: 100px;
+  color: var(--text-white);
+  font-style: italic;
+  text-align: left;
+  max-width: 800px;
+}
+
+.loading-overlay__weather {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.weather-widget {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.weather-widget__icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.weather-widget__details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.weather-widget__temp {
+  font-size: 1.8rem;
+  font-weight: var(--font-bold);
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.weather-widget__wind {
+  font-size: 0.9rem;
+  color: var(--text-grey);
+  line-height: 1;
+}
+
+.loading-overlay__progress-container {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 80vw;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.loading-overlay__progress {
+  width: 100%;
+}
+
+.loading-overlay__progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+}
+
+.loading-overlay__progress-fill {
+  height: 100%;
+  background-color: #CD1B32;
+  transition: width 0.1s linear;
+}
+
+.loading-overlay__progress-text {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: var(--font-semibold);
+  color: var(--text-white);
+}
+
