@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useClubBag } from '../context/ClubBagContext'
+import { useClubBag, Club } from '../context/ClubBagContext'
 import { useUserPreferences } from '../context/UserPreferencesContext'
 import { SettingsModal } from '../onboarding/SettingsModal'
 import { CustomizeBagPrompt } from '../components/CustomizeBagPrompt/CustomizeBagPrompt'

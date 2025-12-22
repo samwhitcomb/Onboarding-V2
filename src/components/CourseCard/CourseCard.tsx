@@ -5,7 +5,7 @@ import './CourseCard.css'
 interface Course {
   id: string
   name: string
-  description: string
+  description?: string
   location: string
   rating: number
   type?: string
@@ -14,6 +14,11 @@ interface Course {
   hasStandardVersion?: boolean
   imageUrl?: string
   hasImage?: boolean
+  continent?: string
+  batch?: string
+  architect?: string
+  blurb?: string[]
+  userRating?: number
 }
 
 interface CourseCardProps {

@@ -182,7 +182,7 @@ export const CourseSelectionPage: React.FC = () => {
     if (filters.contentTier === 'studio') {
       filtered = filtered.filter((c) => c.isStudio === true)
     } else if (filters.contentTier === 'free') {
-      filtered = filtered.filter((c) => !c.isStudio || c.isStudio === false)
+      filtered = filtered.filter((c) => c.isStudio !== true)
     }
 
     setFilteredCourses(filtered)
@@ -241,7 +241,7 @@ export const CourseSelectionPage: React.FC = () => {
 
     // Trending Now
     const studioCourses = allCourses.filter((c) => c.isStudio === true)
-    const nonStudioCourses = allCourses.filter((c) => !c.isStudio || c.isStudio === false)
+    const nonStudioCourses = allCourses.filter((c) => c.isStudio !== true)
     const sortedStudio = studioCourses.sort((a, b) => b.rating - a.rating)
     const sortedNonStudio = nonStudioCourses.sort((a, b) => b.rating - a.rating)
     const trending = [...sortedStudio.slice(0, 4), ...sortedNonStudio.slice(0, 6)].slice(0, 10)

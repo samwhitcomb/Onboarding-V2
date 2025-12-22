@@ -244,10 +244,10 @@ const ClubEditForm: React.FC<ClubEditFormProps> = ({ club, onSave, onCancel }) =
       </div>
 
       <div className="club-edit-form__actions">
-        <Button type="button" variant="ghost" onClick={onCancel}>
+        <Button variant="ghost" onClick={onCancel}>
           Cancel
         </Button>
-        <Button type="submit" variant="primary">
+        <Button variant="primary" onClick={onSubmit}>
           {club ? 'Save Changes' : 'Add Club'}
         </Button>
       </div>

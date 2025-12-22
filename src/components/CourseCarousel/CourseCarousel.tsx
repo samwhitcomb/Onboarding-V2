@@ -14,6 +14,11 @@ interface Course {
   hasStandardVersion?: boolean
   imageUrl?: string
   hasImage?: boolean
+  continent?: string
+  batch?: string
+  architect?: string
+  blurb?: string[]
+  userRating?: number
 }
 
 interface CourseCarouselProps {
@@ -89,7 +94,7 @@ export const CourseCarousel: React.FC<CourseCarouselProps> = ({
               return (
                 <div key={`divider-${index}`} className="carousel-divider">
                   <div className="carousel-divider-line"></div>
-                  <span className="carousel-divider-label">{item.label}</span>
+                  <span className="carousel-divider-label">{('label' in item) ? item.label : ''}</span>
                   <div className="carousel-divider-line"></div>
                 </div>
               )
