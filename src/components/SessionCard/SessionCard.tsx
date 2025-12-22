@@ -8,6 +8,7 @@ import {
 } from '../../data/sessionTypes'
 import { getCourseImage, defaultImages } from '../../utils/courseImages'
 import { Scorecard } from '../Scorecard/Scorecard'
+import { ClubCircles } from '../ClubCircles/ClubCircles'
 import './SessionCard.css'
 
 interface SessionCardProps {
@@ -211,6 +212,25 @@ export const SessionCard: React.FC<SessionCardProps> = ({
         </div>
 
         {getKeyStats()}
+
+        {/* Club Circles for Practice Range, Target Range, and Combine */}
+        {(() => {
+          if (isRangeSession(session) && (session.type === 'practice-range' || session.type === 'target-range')) {
+            return session.clubsUsed && session.clubsUsed.length > 0 ? (
+              <div className="session-card__clubs">
+                <ClubCircles clubs={session.clubsUsed} />
+              </div>
+            ) : null
+          }
+          if (isCombineSession(session)) {
+            return session.clubsUsed && session.clubsUsed.length > 0 ? (
+              <div className="session-card__clubs">
+                <ClubCircles clubs={session.clubsUsed} />
+              </div>
+            ) : null
+          }
+          return null
+        })()}
 
         {isCourseplaySession(session) && session.holeScores && session.holePars && (
           <Scorecard

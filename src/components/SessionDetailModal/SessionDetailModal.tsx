@@ -9,6 +9,7 @@ import {
 import { StrokesGainedChart } from '../StrokesGainedChart/StrokesGainedChart'
 import { CombineRadarChart } from '../CombineRadarChart/CombineRadarChart'
 import { GPSHeatmap } from '../GPSHeatmap/GPSHeatmap'
+import { ClubCircles } from '../ClubCircles/ClubCircles'
 import { getCourseImage, defaultImages } from '../../utils/courseImages'
 import './SessionDetailModal.css'
 
@@ -147,12 +148,20 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
 
           {/* Target Range Session */}
           {isRangeSession(session) && session.type === 'target-range' && session.sgBreakdown && session.strokesGained && (
-            <div className="session-detail-modal__section">
-              <StrokesGainedChart
-                data={session.sgBreakdown}
-                total={session.strokesGained}
-              />
-            </div>
+            <>
+              <div className="session-detail-modal__section">
+                <StrokesGainedChart
+                  data={session.sgBreakdown}
+                  total={session.strokesGained}
+                />
+              </div>
+              {session.clubsUsed && session.clubsUsed.length > 0 && (
+                <div className="session-detail-modal__section">
+                  <h4 className="session-detail-modal__clubs-title">Clubs Used</h4>
+                  <ClubCircles clubs={session.clubsUsed} />
+                </div>
+              )}
+            </>
           )}
 
           {/* Practice Range Session */}
@@ -169,34 +178,38 @@ export const SessionDetailModal: React.FC<SessionDetailModalProps> = ({
                   <span className="session-detail-modal__stat-value">{session.clubsUsed.length}</span>
                 </div>
               </div>
-              <div className="session-detail-modal__clubs">
-                <h4 className="session-detail-modal__clubs-title">Clubs</h4>
-                <div className="session-detail-modal__clubs-list">
-                  {session.clubsUsed.map((club, i) => (
-                    <span key={i} className="session-detail-modal__club-badge">
-                      {club}
-                    </span>
-                  ))}
+              {session.clubsUsed && session.clubsUsed.length > 0 && (
+                <div className="session-detail-modal__clubs">
+                  <h4 className="session-detail-modal__clubs-title">Clubs</h4>
+                  <ClubCircles clubs={session.clubsUsed} />
                 </div>
-              </div>
+              )}
             </div>
           )}
 
           {/* Combine Session */}
           {isCombineSession(session) && (
-            <div className="session-detail-modal__section">
-              <CombineRadarChart
-                data={{
-                  accuracy: session.accuracy,
-                  distance: session.distance,
-                  consistency: session.consistency,
-                  shotShape: session.shotShape,
-                  trajectoryControl: session.trajectoryControl,
-                }}
-                totalScore={session.totalScore}
-                maxScore={session.maxScore}
-              />
-            </div>
+            <>
+              <div className="session-detail-modal__section">
+                <CombineRadarChart
+                  data={{
+                    accuracy: session.accuracy,
+                    distance: session.distance,
+                    consistency: session.consistency,
+                    shotShape: session.shotShape,
+                    trajectoryControl: session.trajectoryControl,
+                  }}
+                  totalScore={session.totalScore}
+                  maxScore={session.maxScore}
+                />
+              </div>
+              {session.clubsUsed && session.clubsUsed.length > 0 && (
+                <div className="session-detail-modal__section">
+                  <h4 className="session-detail-modal__clubs-title">Clubs Used</h4>
+                  <ClubCircles clubs={session.clubsUsed} />
+                </div>
+              )}
+            </>
           )}
 
           {/* Game Session */}

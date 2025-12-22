@@ -53,6 +53,7 @@ export interface CombineSession extends BaseSession {
   consistency: number
   shotShape: number
   trajectoryControl: number
+  clubsUsed: string[]
 }
 
 export interface GameSession extends BaseSession {

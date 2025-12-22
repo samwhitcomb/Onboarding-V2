@@ -451,6 +451,7 @@ const combineSessions: CombineSession[] = [
     consistency: 88,
     shotShape: 80,
     trajectoryControl: 75,
+    clubsUsed: ['Driver', '7 Iron', 'Pitching Wedge'],
   },
   {
     id: 'comb-002',
@@ -465,6 +466,7 @@ const combineSessions: CombineSession[] = [
     consistency: 82,
     shotShape: 75,
     trajectoryControl: 70,
+    clubsUsed: ['Driver', '5 Iron', 'Sand Wedge'],
   },
   {
     id: 'comb-003',
@@ -479,6 +481,7 @@ const combineSessions: CombineSession[] = [
     consistency: 92,
     shotShape: 86,
     trajectoryControl: 82,
+    clubsUsed: ['Driver', '3 Wood', '7 Iron', 'Pitching Wedge'],
   },
   {
     id: 'comb-004',
@@ -493,6 +496,7 @@ const combineSessions: CombineSession[] = [
     consistency: 84,
     shotShape: 78,
     trajectoryControl: 73,
+    clubsUsed: ['Driver', '6 Iron', 'Gap Wedge'],
   },
   {
     id: 'comb-005',
@@ -507,6 +511,7 @@ const combineSessions: CombineSession[] = [
     consistency: 89,
     shotShape: 82,
     trajectoryControl: 78,
+    clubsUsed: ['Driver', '4 Iron', '8 Iron', 'Pitching Wedge'],
   },
   {
     id: 'comb-006',
@@ -521,6 +526,7 @@ const combineSessions: CombineSession[] = [
     consistency: 80,
     shotShape: 73,
     trajectoryControl: 68,
+    clubsUsed: ['Driver', '7 Iron', 'Sand Wedge'],
   },
   {
     id: 'comb-007',
@@ -535,6 +541,7 @@ const combineSessions: CombineSession[] = [
     consistency: 86,
     shotShape: 79,
     trajectoryControl: 74,
+    clubsUsed: ['Driver', '5 Iron', 'Pitching Wedge'],
   },
   {
     id: 'comb-008',
@@ -549,6 +556,7 @@ const combineSessions: CombineSession[] = [
     consistency: 78,
     shotShape: 70,
     trajectoryControl: 66,
+    clubsUsed: ['Driver', '6 Iron', 'Sand Wedge'],
   },
 ]
 
