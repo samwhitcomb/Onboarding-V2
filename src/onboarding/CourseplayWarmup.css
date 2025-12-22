@@ -312,6 +312,23 @@
   height: 70px;
 }
 
+.tooltip-highlight--club-selection {
+  /* Position for club selection area - adjust based on actual UI */
+  top: 75%;
+  left: 2%;
+  width: 200px;
+  height: 150px;
+}
+
+.tooltip-highlight--distance-marker {
+  /* Position for distance markers on course - adjust based on actual UI */
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 100px;
+}
+
 .tooltip-highlight__row {
   flex: 1;
   display: flex;
@@ -389,6 +406,18 @@
   top: 35%;
   right: 20%;
   transform: translateY(-50%);
+}
+
+.tooltip-callout--club-selection {
+  top: 60%;
+  left: 20%;
+  transform: translateY(-50%);
+}
+
+.tooltip-callout--distance-marker {
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .tooltip-callout h4 {

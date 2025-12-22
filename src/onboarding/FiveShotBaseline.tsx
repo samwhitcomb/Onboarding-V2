@@ -27,7 +27,6 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
   const [showFlightPath, setShowFlightPath] = useState(false)
   const [showImpactCam, setShowImpactCam] = useState(false)
   const [promptIndex, setPromptIndex] = useState<number | null>(null) // null = not started, number = current prompt index
-  const [showCompleteFiveShots, setShowCompleteFiveShots] = useState(false)
   const [showNarrative, setShowNarrative] = useState(true) // Show narrative modal on initial load
   const [buttonPositions, setButtonPositions] = useState<Record<string, { top: number; right: number; width: number; height: number }>>({})
   const [ballPlaced, setBallPlaced] = useState(false)
@@ -156,17 +155,10 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
 
   const handleNextShot = () => {
     setShowPopup(false)
-    
-    if (currentShot >= 5) {
-      setTimeout(() => {
-        setCurrentStep('data-review')
-      }, 500)
-    } else {
-      // Record next shot after a brief pause
-      setTimeout(() => {
-        recordShot(currentShot + 1)
-      }, 500)
-    }
+    // Record next shot after a brief pause - no limit
+    setTimeout(() => {
+      recordShot(currentShot + 1)
+    }, 500)
   }
 
   const handleFlightPathComplete = () => {
@@ -193,11 +185,11 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
   }
 
   const handleRecordShot = () => {
-    // Don't allow recording if showing "complete 5 shots" message or showing animations
+    // Don't allow recording if showing animations
     // Note: prompts (club replay, dispersion, data panels) don't block recording
     // Prompts remain visible until user explicitly dismisses them
     // Also require ball to be placed
-    if (showCompleteFiveShots || showFlightPath || showImpactCam || !ballPlaced) return
+    if (showFlightPath || showImpactCam || !ballPlaced) return
     
     // Hide narrative when first shot is taken
     if (showNarrative && currentShot === 0) {
@@ -207,8 +199,8 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
     if (currentShot === 0) {
       // Record first shot
       recordShot(1)
-    } else if (currentShot < 5) {
-      // Record next shot
+    } else {
+      // Record next shot - no limit
       recordShot(currentShot + 1)
     }
   }
@@ -237,38 +229,26 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
       // Move to next prompt
       setPromptIndex(promptIndex + 1)
     } else {
-      // All prompts complete, show "complete 5 shots" message
+      // All prompts complete, just dismiss
       setPromptIndex(null)
-      setShowCompleteFiveShots(true)
-      setShowPopup(true)
+      setShowPopup(false)
     }
   }
 
-  // Auto-dismiss popups for shots 2-5 after a delay
+  // Auto-dismiss popups for shots after a delay
   useEffect(() => {
     // Only auto-dismiss if we're showing shot popups (not prompts)
-    if (!showPopup || popupContent === '' || promptIndex !== null || showCompleteFiveShots) return
+    if (!showPopup || popupContent === '' || promptIndex !== null) return
 
-    const popupDuration = popupContent === 'shot-4' ? 3000 : popupContent === 'shot-5' ? 4000 : 3500
-    
-    // Extract shot number from popupContent (e.g., "shot-2" -> 2)
-    const shotNumMatch = popupContent.match(/shot-(\d+)/)
-    const shotNum = shotNumMatch ? parseInt(shotNumMatch[1], 10) : currentShotRef.current
+    const popupDuration = 3500
     
     const timer = setTimeout(() => {
       setShowPopup(false)
-      
-      // If this was the last shot, move to data review
-      if (shotNum >= 5) {
-        setTimeout(() => {
-          setCurrentStep('data-review')
-        }, 500)
-      }
-      // Otherwise, just dismiss the popup - user will click "Record Shot" again
+      // Just dismiss the popup - user can continue taking shots
     }, popupDuration)
 
     return () => clearTimeout(timer)
-  }, [showPopup, popupContent, promptIndex, showCompleteFiveShots, setCurrentStep])
+  }, [showPopup, popupContent, promptIndex])
 
   const renderPopup = () => {
     if (!showPopup) return null
@@ -367,65 +347,19 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
       )
     }
 
-    // Show "complete 5 shots" message after all prompts
-    if (showCompleteFiveShots) {
+    // Show popups for shots (generic message for all shots after first)
+    if (popupContent.startsWith('shot-') && parseInt(popupContent.split('-')[1]) > 1) {
+      const shotNum = parseInt(popupContent.split('-')[1])
       return (
         <Popup position="center">
           <div className="feature-popup">
-            <p>
-              Great! Now that you understand how to view and contextualize your data, complete <strong>5 shots</strong> to build your baseline.
-            </p>
-            <Button 
-              onClick={() => {
-                setShowCompleteFiveShots(false)
-                setShowPopup(false)
-              }} 
-              className="feature-popup__button"
-            >
-              Got it
-            </Button>
+            <p>Shot {shotNum} recorded. Keep going!</p>
           </div>
         </Popup>
       )
     }
-
-    // Show popups for shots 2-5
-    switch (popupContent) {
-      case 'shot-2':
-        return (
-          <Popup position="center">
-            <div className="feature-popup">
-              <p>Shot 2 recorded. Keep going!</p>
-            </div>
-          </Popup>
-        )
-      case 'shot-3':
-        return (
-          <Popup position="center">
-            <div className="feature-popup">
-              <p>Shot 3 recorded. You're making progress!</p>
-            </div>
-          </Popup>
-        )
-      case 'shot-4':
-        return (
-          <Popup position="center">
-            <div className="feature-popup">
-              <p>Shot 4 recorded. One more to go!</p>
-            </div>
-          </Popup>
-        )
-      case 'shot-5':
-        return (
-          <Popup position="center">
-            <div className="feature-popup">
-              <p>Excellent! You've completed all 5 shots. Your data is ready for review.</p>
-            </div>
-          </Popup>
-        )
-      default:
-        return null
-    }
+    
+    return null
   }
 
   const narrative = getClubNarrative()
@@ -469,13 +403,7 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
       )}
       <div className="five-shot-baseline__progress">
         <div className="shot-counter">
-          Shot {currentShot} of 5
-        </div>
-        <div className="progress-bar">
-          <div
-            className="progress-bar__fill"
-            style={{ width: `${(currentShot / 5) * 100}%` }}
-          />
+          Shot {currentShot}
         </div>
       </div>
       <div className="five-shot-baseline__actions">
@@ -484,7 +412,7 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
           className="five-shot-baseline__shot-button"
           disabled={!ballPlaced}
         >
-          Record Shot
+          Record Demo Shot
         </Button>
         {currentShot > 0 && (
           <div className="shot-numbers">

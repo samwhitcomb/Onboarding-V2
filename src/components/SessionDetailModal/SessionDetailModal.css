@@ -1,0 +1,277 @@
+.session-detail-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  animation: fadeIn var(--transition-normal);
+}
+
+.session-detail-modal {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  background: var(--bg-dark-grey);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-xl);
+  overflow-y: auto;
+  animation: slideUp var(--transition-normal);
+}
+
+.session-detail-modal__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-white);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.session-detail-modal__close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.session-detail-modal__header {
+  padding: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.session-detail-modal__title {
+  font-size: 32px;
+  font-weight: var(--font-bold);
+  color: var(--text-white);
+  margin: 0 0 12px 0;
+}
+
+.session-detail-modal__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.session-detail-modal__date {
+  font-size: 15px;
+  color: var(--text-grey);
+}
+
+.session-detail-modal__badges {
+  display: flex;
+  gap: 8px;
+}
+
+.session-detail-modal__badge {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: var(--font-medium);
+  color: var(--text-grey);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.session-detail-modal__badge--sim {
+  background: rgba(48, 209, 88, 0.15);
+  color: var(--accent-green);
+  border: 1px solid rgba(48, 209, 88, 0.3);
+}
+
+.session-detail-modal__badge--live {
+  background: rgba(205, 27, 50, 0.15);
+  color: var(--accent-red);
+  border: 1px solid rgba(205, 27, 50, 0.3);
+}
+
+.session-detail-modal__content {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.session-detail-modal__section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.session-detail-modal__section-title {
+  font-size: 20px;
+  font-weight: var(--font-semibold);
+  color: var(--text-white);
+  margin: 0;
+}
+
+.session-detail-modal__scorecard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.session-detail-modal__score-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.session-detail-modal__score-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  font-weight: var(--font-medium);
+}
+
+.session-detail-modal__score-value {
+  font-size: 28px;
+  font-weight: var(--font-bold);
+  color: var(--text-white);
+}
+
+.session-detail-modal__stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.session-detail-modal__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.session-detail-modal__stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  font-weight: var(--font-medium);
+}
+
+.session-detail-modal__stat-value {
+  font-size: 28px;
+  font-weight: var(--font-bold);
+  color: var(--text-white);
+}
+
+.session-detail-modal__clubs {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.session-detail-modal__clubs-title {
+  font-size: 14px;
+  font-weight: var(--font-semibold);
+  color: var(--text-grey);
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.session-detail-modal__clubs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.session-detail-modal__club-badge {
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: var(--font-medium);
+  color: var(--text-white);
+}
+
+.session-detail-modal__game-result {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.session-detail-modal__game-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.session-detail-modal__game-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  font-weight: var(--font-medium);
+}
+
+.session-detail-modal__game-value {
+  font-size: 48px;
+  font-weight: var(--font-bold);
+  color: var(--text-white);
+}
+
+.session-detail-modal__pb-badge {
+  padding: 6px 12px;
+  background: var(--accent-gold);
+  color: #000;
+  font-size: 12px;
+  font-weight: var(--font-bold);
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Custom scrollbar */
+.session-detail-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.session-detail-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.session-detail-modal::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+}
+
+.session-detail-modal::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+

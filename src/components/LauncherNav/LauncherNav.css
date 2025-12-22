@@ -1,0 +1,55 @@
+.launcher-nav {
+  position: absolute;
+  top: 32px;
+  left: 35%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 25px;
+  z-index: 100;
+}
+
+.launcher-nav__item {
+  font-family: 'Acumin Pro ExtraCond', var(--font-primary);
+  font-style: italic;
+  font-weight: var(--font-bold);
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0 0 4px 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.launcher-nav__item:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.launcher-nav__item--active {
+  color: var(--text-white);
+}
+
+.launcher-nav__item--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--accent-red);
+  animation: underlineSlideIn 0.3s ease-out;
+}
+
+@keyframes underlineSlideIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://samwhitcomb.github.io/Onboarding-V1/",
+  "homepage": "https://samwhitcomb.github.io/Onboarding-V2/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

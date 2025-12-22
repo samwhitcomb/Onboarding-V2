@@ -15,3 +15,25 @@
   object-position: center;
 }
 
+/* Launcher should behave like "contain" so UI scaling/positioning can match the visible image rect */
+.background--launcher .background__image {
+  object-fit: contain;
+}
+
+/* Dark overlay for sessions background to improve text readability */
+.background__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+

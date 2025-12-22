@@ -2,12 +2,20 @@ import React, { useState, useEffect } from 'react'
 import { useOnboarding } from '../context/OnboardingContext'
 import {
   LauncherBackground,
+  SessionsBackground,
+  ProfileBackground,
   RangeBackground,
   CourseplayBackground,
   PuttingBackground,
   LoadingBackground,
 } from '../backgrounds'
-import { FlightPlansCarousel } from '../components/FlightPlansCarousel/FlightPlansCarousel'
+import { PlayCardsCarousel } from '../components/PlayCardsCarousel/PlayCardsCarousel'
+import { LauncherNav } from '../components/LauncherNav/LauncherNav'
+import { SessionsPage } from '../screens/SessionsPage'
+import { ProfilePage } from '../screens/ProfilePage'
+import { CourseSelectionPage } from '../screens/CourseSelectionPage'
+import { SessionDetailModal } from '../components/SessionDetailModal/SessionDetailModal'
+import { Session } from '../data/sessionTypes'
 import { WelcomeModal } from './WelcomeModal'
 import { FlightPlansIntro } from './FlightPlansIntro'
 import { SettingsCheckSequence } from './SettingsCheckSequence'
@@ -18,6 +26,12 @@ import { FiveShotBaseline } from './FiveShotBaseline'
 import { DataReviewModal } from './DataReviewModal'
 import { DataSavingModal } from './DataSavingModal'
 import { LoadingOverlay } from './LoadingOverlay'
+import { CourseLoadingOverlay } from './CourseLoadingOverlay'
+import { CoursePlayLoadingOverlay } from './CoursePlayLoadingOverlay'
+import { PracticeLoadingOverlay } from './PracticeLoadingOverlay'
+import { RangeLoadingOverlay } from './RangeLoadingOverlay'
+import { TargetRangeLoadingOverlay } from './TargetRangeLoadingOverlay'
+import { CTPLoadingOverlay } from './CTPLoadingOverlay'
 import { CourseplayWarmup } from './CourseplayWarmup'
 import { CelebrationModal } from './CelebrationModal'
 import { ChallengeIntroModal } from './ChallengeIntroModal'
@@ -25,20 +39,50 @@ import { PersonalizedPrepModal } from './PersonalizedPrepModal'
 import { ChallengeShotOverlay } from './ChallengeShotOverlay'
 import { ShotResultModal } from './ShotResultModal'
 import { OnboardingCompleteModal } from './OnboardingCompleteModal'
+import { TutorialPractice } from './TutorialPractice'
+import { TutorialRange } from './TutorialRange'
+import { TutorialTargetRange } from './TutorialTargetRange'
+import { TutorialCourses } from './TutorialCourses'
+import { TutorialCTP } from './TutorialCTP'
 import { FlightPlansWidget } from '../components/FlightPlansWidget/FlightPlansWidget'
 import { QuitButton } from '../components/QuitButton/QuitButton'
 import { QuitConfirmation } from '../components/QuitConfirmation/QuitConfirmation'
+import { ExploreFreelyPrompt } from '../components/ExploreFreelyPrompt/ExploreFreelyPrompt'
 import './OnboardingFlow.css'
 
 const OnboardingFlow: React.FC = () => {
   const { currentStep, setCurrentStep } = useOnboarding()
+  const [selectedCourseName, setSelectedCourseName] = useState<string>('Pebble Beach Golf Links')
+  const [selectedCourseLocation, setSelectedCourseLocation] = useState<string>('Monterey County, CALIFORNIA')
   const [showQuitConfirmation, setShowQuitConfirmation] = useState(false)
   const [hoveredButton, setHoveredButton] = useState<string | null>(null)
   const [currentPromptId, setCurrentPromptId] = useState<string | null>(null)
+  const [launcherSection, setLauncherSection] = useState<'sessions' | 'play' | 'profile'>('play')
+  const [selectedSession, setSelectedSession] = useState<Session | null>(null)
+  const [welcomeStep, setWelcomeStep] = useState<'intro' | 'flight-plans'>('intro')
+  const [showExploreFreelyPrompt, setShowExploreFreelyPrompt] = useState(false)
+
+  // Listen for course tee off events to get course info
+  useEffect(() => {
+    const handleCourseTeeOff = (event: Event) => {
+      const customEvent = event as CustomEvent
+      const { courseName, courseLocation } = customEvent.detail || {}
+      if (courseName) setSelectedCourseName(courseName)
+      if (courseLocation) setSelectedCourseLocation(courseLocation)
+    }
+
+    window.addEventListener('course-tee-off', handleCourseTeeOff)
+    return () => {
+      window.removeEventListener('course-tee-off', handleCourseTeeOff)
+    }
+  }, [])
 
   // Determine if we should show the Flight Plans widget
-  // Only show on: flight-plans-intro and complete (launcher)
+  // Show on: welcome (step 2 only), flight-plans-intro, and complete (launcher)
   const shouldShowWidget = () => {
+    if (currentStep === 'welcome') {
+      return welcomeStep === 'flight-plans'
+    }
     return currentStep === 'flight-plans-intro' || currentStep === 'complete'
   }
 
@@ -59,6 +103,51 @@ const OnboardingFlow: React.FC = () => {
 
   const handleQuitCancel = () => {
     setShowQuitConfirmation(false)
+  }
+
+  // Get section name based on current step
+  const getSectionName = (): string => {
+    switch (currentStep) {
+      case 'settings-check':
+      case 'unit-preference':
+      case 'display-confirmation':
+      case 'settings-tooltip':
+        return 'Setup'
+      case 'club-selection-intro':
+      case 'club-selection-tooltip':
+      case 'club-selection':
+        return 'Club Selection'
+      case 'five-shot-baseline':
+      case 'data-review':
+      case 'data-saving':
+      case 'baseline-complete':
+        return 'Practice'
+      case 'tutorial-practice':
+        return 'Practice Tutorial'
+      case 'tutorial-range':
+        return 'Range Tutorial'
+      case 'tutorial-target-range':
+        return 'Target Range Tutorial'
+      case 'tutorial-courses':
+        return 'Course Selection Tutorial'
+      case 'tutorial-ctp':
+        return 'Closest to the Pin Tutorial'
+      case 'course-loading':
+      case 'course-selection':
+        return 'Course Selection'
+      case 'course-play-loading':
+      case 'courseplay-warmup':
+      case 'celebration':
+      case 'challenge-intro':
+      case 'personalized-prep':
+      case 'challenge-shot':
+      case 'shot-result':
+        return 'Courseplay'
+      case 'loading':
+        return 'Course Loading'
+      default:
+        return 'Session'
+    }
   }
 
   // Global keyboard handler for Escape key to quit from anywhere
@@ -97,6 +186,41 @@ const OnboardingFlow: React.FC = () => {
       window.removeEventListener('prompt-index-change', handlePromptChange)
     }
   }, [])
+
+  // Listen for welcome step changes from WelcomeModal
+  useEffect(() => {
+    const handleWelcomeStepChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ step: 'intro' | 'flight-plans' }>
+      setWelcomeStep(customEvent.detail.step)
+    }
+    window.addEventListener('welcome-step-change', handleWelcomeStepChange)
+    return () => {
+      window.removeEventListener('welcome-step-change', handleWelcomeStepChange)
+    }
+  }, [])
+
+  // Show prompt when navigating to play section (unless explicitly dismissed)
+  useEffect(() => {
+    if (currentStep === 'complete' && launcherSection === 'play') {
+      const hasSeenPrompt = localStorage.getItem('exploreFreelyPromptSeen') === 'true'
+      
+      // Show prompt if user hasn't explicitly dismissed it
+      // Reset the prompt visibility when navigating to play section
+      if (!hasSeenPrompt) {
+        // Add a small delay to ensure smooth transition
+        const timer = setTimeout(() => {
+          setShowExploreFreelyPrompt(true)
+        }, 300)
+        return () => clearTimeout(timer)
+      } else {
+        setShowExploreFreelyPrompt(false)
+      }
+    } else {
+      // Hide prompt if not on play section, but don't reset the seen flag
+      setShowExploreFreelyPrompt(false)
+    }
+  }, [currentStep, launcherSection])
+
 
   const showQuitButton = currentStep !== 'welcome' && currentStep !== 'complete'
 
@@ -160,6 +284,20 @@ const OnboardingFlow: React.FC = () => {
         )
       case 'loading':
         return <LoadingOverlay />
+      case 'practice-loading':
+        return <PracticeLoadingOverlay />
+      case 'range-loading':
+        return <RangeLoadingOverlay />
+      case 'target-range-loading':
+        return <TargetRangeLoadingOverlay />
+      case 'ctp-loading':
+        return <CTPLoadingOverlay />
+      case 'course-loading':
+        return <CourseLoadingOverlay />
+      case 'course-selection':
+        return <CourseSelectionPage />
+      case 'course-play-loading':
+        return <CoursePlayLoadingOverlay courseName={selectedCourseName} courseLocation={selectedCourseLocation} />
       case 'courseplay-warmup':
         return <CourseplayWarmup />
       case 'celebration':
@@ -174,6 +312,16 @@ const OnboardingFlow: React.FC = () => {
         return <ShotResultModal />
       case 'onboarding-complete':
         return <OnboardingCompleteModal />
+      case 'tutorial-practice':
+        return <TutorialPractice />
+      case 'tutorial-range':
+        return <TutorialRange />
+      case 'tutorial-target-range':
+        return <TutorialTargetRange />
+      case 'tutorial-courses':
+        return <TutorialCourses />
+      case 'tutorial-ctp':
+        return <TutorialCTP />
       case 'complete':
         return null
       default:
@@ -263,8 +411,8 @@ const OnboardingFlow: React.FC = () => {
       }
     }
 
-    // Spotlight for Flight Plans widget during intro
-    const flightPlansMask = currentStep === 'flight-plans-intro' ? [
+    // Spotlight for Flight Plans widget during intro or welcome step 2
+    const flightPlansMask = (currentStep === 'flight-plans-intro' || (currentStep === 'welcome' && welcomeStep === 'flight-plans')) ? [
       {
         id: 'flight-plans-widget',
         top: 1,       // Align to minimized widget position
@@ -286,8 +434,23 @@ const OnboardingFlow: React.FC = () => {
 
     switch (currentStep) {
       case 'welcome':
+        return (
+          <LauncherBackground 
+            maskElements={activeMask}
+            onButtonHover={setHoveredButton}
+          />
+        )
       case 'complete':
-        return <LauncherBackground />
+        // Show different background based on launcher section
+        if (launcherSection === 'sessions') {
+          return <SessionsBackground />
+        } else if (launcherSection === 'play') {
+          return <LauncherBackground />
+        } else if (launcherSection === 'profile') {
+          return <ProfileBackground />
+        } else {
+          return <LauncherBackground />
+        }
       case 'flight-plans-intro':
         return (
           <LauncherBackground 
@@ -295,6 +458,7 @@ const OnboardingFlow: React.FC = () => {
             onButtonHover={setHoveredButton}
           />
         )
+      case 'tutorial-practice':
       case 'settings-check':
       case 'unit-preference':
       case 'display-confirmation':
@@ -328,7 +492,15 @@ const OnboardingFlow: React.FC = () => {
           />
         )
       case 'loading':
+      case 'practice-loading':
+      case 'range-loading':
+      case 'target-range-loading':
+      case 'ctp-loading':
+      case 'course-loading':
+      case 'course-play-loading':
         return <LoadingBackground />
+      case 'course-selection':
+        return <LauncherBackground />
       case 'courseplay-warmup':
       case 'celebration':
       case 'challenge-intro':
@@ -347,15 +519,45 @@ const OnboardingFlow: React.FC = () => {
   return (
     <div className="onboarding-flow">
       {getBackground()}
-      {showQuitButton && <QuitButton onQuit={handleQuitClick} />}
+      {showQuitButton && <QuitButton onQuit={handleQuitClick} sectionName={getSectionName()} />}
       {showQuitConfirmation && (
-        <QuitConfirmation onConfirm={handleQuitConfirm} onCancel={handleQuitCancel} />
+        <QuitConfirmation 
+          onConfirm={handleQuitConfirm} 
+          onCancel={handleQuitCancel}
+          sectionName={getSectionName()}
+        />
       )}
-      {currentStep === 'complete' && <FlightPlansCarousel />}
+      {(currentStep === 'complete' || currentStep === 'welcome') && (
+        <>
+          <LauncherNav 
+            activeSection={launcherSection}
+            onSectionChange={setLauncherSection}
+          />
+          {launcherSection === 'play' && <PlayCardsCarousel />}
+          {launcherSection === 'sessions' && (
+            <SessionsPage onSessionClick={setSelectedSession} />
+          )}
+          {launcherSection === 'profile' && <ProfilePage />}
+        </>
+      )}
+      {selectedSession && (
+        <SessionDetailModal
+          session={selectedSession}
+          onClose={() => setSelectedSession(null)}
+        />
+      )}
       {shouldShowWidget() && (
-        <div className={`onboarding-flightplans-widget ${currentStep === 'flight-plans-intro' ? 'onboarding-flightplans-widget--intro' : ''}`}>
+        <div className={`onboarding-flightplans-widget ${(currentStep === 'flight-plans-intro' || (currentStep === 'welcome' && welcomeStep === 'flight-plans')) ? 'onboarding-flightplans-widget--intro' : ''}`}>
           <FlightPlansWidget />
         </div>
+      )}
+      {showExploreFreelyPrompt && (
+        <ExploreFreelyPrompt 
+          onDismiss={() => {
+            setShowExploreFreelyPrompt(false)
+            // The flag is set in ExploreFreelyPrompt's handleDismiss when user explicitly dismisses
+          }} 
+        />
       )}
       {renderCurrentStep()}
     </div>

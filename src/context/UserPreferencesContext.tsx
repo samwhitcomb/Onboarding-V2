@@ -14,6 +14,15 @@ interface UserPreferencesContextType {
   setSpeedUnit: (unit: SpeedUnit) => void
   displayScreen: DisplayScreen
   setDisplayScreen: (screen: DisplayScreen) => void
+  // User profile settings
+  name: string
+  setName: (name: string) => void
+  email: string
+  setEmail: (email: string) => void
+  handicap: number | null
+  setHandicap: (handicap: number | null) => void
+  leftHanded: boolean
+  setLeftHanded: (leftHanded: boolean) => void
 }
 
 const UserPreferencesContext = createContext<UserPreferencesContextType | undefined>(undefined)
@@ -31,6 +40,48 @@ export const UserPreferencesProvider: React.FC<{ children: ReactNode }> = ({ chi
   const [puttingDistanceUnit, setPuttingDistanceUnit] = useState<PuttingDistanceUnit>('feet')
   const [speedUnit, setSpeedUnit] = useState<SpeedUnit>('mph')
   const [displayScreen, setDisplayScreen] = useState<DisplayScreen>('primary')
+  
+  // User profile settings with localStorage persistence
+  const [name, setNameState] = useState<string>(() => {
+    const stored = localStorage.getItem('userName')
+    return stored || ''
+  })
+  const [email, setEmailState] = useState<string>(() => {
+    const stored = localStorage.getItem('userEmail')
+    return stored || ''
+  })
+  const [handicap, setHandicapState] = useState<number | null>(() => {
+    const stored = localStorage.getItem('userHandicap')
+    return stored ? parseFloat(stored) : null
+  })
+  const [leftHanded, setLeftHandedState] = useState<boolean>(() => {
+    const stored = localStorage.getItem('userLeftHanded')
+    return stored === 'true'
+  })
+
+  const setName = (newName: string) => {
+    setNameState(newName)
+    localStorage.setItem('userName', newName)
+  }
+
+  const setEmail = (newEmail: string) => {
+    setEmailState(newEmail)
+    localStorage.setItem('userEmail', newEmail)
+  }
+
+  const setHandicap = (newHandicap: number | null) => {
+    setHandicapState(newHandicap)
+    if (newHandicap !== null) {
+      localStorage.setItem('userHandicap', newHandicap.toString())
+    } else {
+      localStorage.removeItem('userHandicap')
+    }
+  }
+
+  const setLeftHanded = (newLeftHanded: boolean) => {
+    setLeftHandedState(newLeftHanded)
+    localStorage.setItem('userLeftHanded', newLeftHanded.toString())
+  }
 
   return (
     <UserPreferencesContext.Provider
@@ -43,6 +94,14 @@ export const UserPreferencesProvider: React.FC<{ children: ReactNode }> = ({ chi
         setSpeedUnit,
         displayScreen,
         setDisplayScreen,
+        name,
+        setName,
+        email,
+        setEmail,
+        handicap,
+        setHandicap,
+        leftHanded,
+        setLeftHanded,
       }}
     >
       {children}

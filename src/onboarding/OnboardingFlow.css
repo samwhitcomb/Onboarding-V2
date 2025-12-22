@@ -1,15 +1,18 @@
-/* Fixed 16:9 aspect ratio container */
+/* Fixed 1920x1080 canvas - users should fullscreen or browser zoom */
 .onboarding-flow {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100vw;
-  height: 100vh;
-  max-width: 177.78vh; /* 16:9 aspect ratio: if height is limiting factor */
-  max-height: 56.25vw;  /* 16:9 aspect ratio: if width is limiting factor */
+  width: 1920px;
+  height: 1080px;
   overflow: hidden;
   background: #000;
+}
+
+/* Allow overflow for carousel cards when on launcher */
+.onboarding-flow:has(.play-cards-carousel) {
+  overflow: visible;
 }
 
 .onboarding-flightplans-widget {

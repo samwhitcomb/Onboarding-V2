@@ -1,0 +1,82 @@
+.sessions-page {
+  position: absolute;
+  top: 110px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 200px); /* 123px top + 123px bottom */
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 10;
+  background: white;
+}
+
+.sessions-page__filters {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+  z-index: 50;
+}
+
+.sessions-page:has(.sessions-page__banner) .sessions-page__filters {
+  top: 100px; /* Adjust when banner is visible */
+}
+
+.sessions-page__banner {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: calc(100% - 120px);
+  max-width: 800px;
+}
+
+.sessions-page__banner-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 16px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sessions-page__banner-text {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sessions-page__content {
+  padding-top: 80px; /* Space for filters + margin */
+  padding-bottom: 40px;
+}
+
+.sessions-page:has(.sessions-page__banner) .sessions-page__content {
+  padding-top: 180px; /* More space when banner is visible */
+}
+
+/* Custom scrollbar for sessions page */
+.sessions-page::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sessions-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sessions-page::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast);
+}
+
+.sessions-page::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+

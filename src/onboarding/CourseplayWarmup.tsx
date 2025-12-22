@@ -5,10 +5,11 @@ import { FlightPathAnimation } from './FlightPathAnimation'
 import { BallPlacement } from './BallPlacement'
 import './CourseplayWarmup.css'
 
-type Phase = 'scene-setting' | 'controls-intro' | 'waypoint-tooltip' | 'map-tooltip' | 'putting-tooltip' | 'playing'
+type Phase = 'scene-setting' | 'controls-intro' | 'waypoint-tooltip' | 'map-tooltip' | 'club-selection-tooltip' | 'distance-marker-tooltip' | 'putting-tooltip' | 'playing'
 
 export const CourseplayWarmup: React.FC = () => {
   const { setCurrentStep } = useOnboarding()
+  const [courseName, setCourseName] = useState<string>('Pebble Beach')
   const [phase, setPhase] = useState<Phase>('scene-setting')
   const [showControlsIntro, setShowControlsIntro] = useState(false)
   const [currentShot, setCurrentShot] = useState(0)
@@ -21,6 +22,30 @@ export const CourseplayWarmup: React.FC = () => {
   const [hoveredCourseView, setHoveredCourseView] = useState<string | null>(null)
   const [showPuttingTooltip, setShowPuttingTooltip] = useState(false)
   const currentShotRef = useRef(0)
+
+  // Get course name from sessionStorage or event
+  useEffect(() => {
+    // Check sessionStorage first (set when tee off is clicked)
+    const stored = sessionStorage.getItem('selectedCourseName')
+    if (stored) {
+      setCourseName(stored)
+    }
+
+    // Also listen for course-tee-off event as backup
+    const handleCourseInfo = (event: Event) => {
+      const customEvent = event as CustomEvent
+      if (customEvent.detail?.courseName) {
+        setCourseName(customEvent.detail.courseName)
+        // Also store it for persistence
+        sessionStorage.setItem('selectedCourseName', customEvent.detail.courseName)
+      }
+    }
+
+    window.addEventListener('course-tee-off', handleCourseInfo)
+    return () => {
+      window.removeEventListener('course-tee-off', handleCourseInfo)
+    }
+  }, [])
 
   // Scene setting auto-advance
   useEffect(() => {
@@ -44,6 +69,14 @@ export const CourseplayWarmup: React.FC = () => {
   }
 
   const handleMapNext = () => {
+    setPhase('club-selection-tooltip')
+  }
+
+  const handleClubSelectionNext = () => {
+    setPhase('distance-marker-tooltip')
+  }
+
+  const handleDistanceMarkerNext = () => {
     setPhase('playing')
     // Reset ball placement when entering playing phase
     setBallPlaced(false)
@@ -100,6 +133,12 @@ export const CourseplayWarmup: React.FC = () => {
     }
     // If last shot, queue celebration
     if (currentShot >= 6) {
+      // Dispatch feature completion event for courseplay
+      window.dispatchEvent(
+        new CustomEvent('feature-complete', {
+          detail: { featureId: 'courseplay' },
+        }),
+      )
       setTimeout(() => {
         setCurrentStep('celebration')
       }, 500)
@@ -185,11 +224,11 @@ export const CourseplayWarmup: React.FC = () => {
       <div className="courseplay-warmup courseplay-warmup--scene-setting">
         <div className="scene-setting">
           <div className="scene-setting__content">
-            <h2 className="scene-setting__title">Hole 7 at Pebble Beach</h2>
-            <p className="scene-setting__subtitle">The most iconic par 3 in golf.</p>
+            <h2 className="scene-setting__title">Hole 1 at {courseName}</h2>
+            <p className="scene-setting__subtitle">Your round begins here.</p>
             <p className="scene-setting__description">
-              107 yards downhill to a green perched on the edge of Carmel Bay. 
-              The wind swirls off the Pacific. One shot. No margin for error.
+              Welcome to the first tee. Take your time to familiarize yourself with the course and controls. 
+              Let's walk through everything you need to know before you tee off.
             </p>
           </div>
         </div>
@@ -198,7 +237,7 @@ export const CourseplayWarmup: React.FC = () => {
             <div className="controls-intro__content">
               <h3 className="controls-intro__title">Before You Tee Off</h3>
               <p className="controls-intro__description">
-                Let's walk through the key controls that will help you navigate the course.
+                Let's walk through the key controls and UI elements that will help you navigate the course and play your best round.
               </p>
               <Button onClick={handleControlsIntroNext}>Show Me</Button>
             </div>
@@ -255,9 +294,54 @@ export const CourseplayWarmup: React.FC = () => {
           <div className="tooltip-callout tooltip-callout--map">
             <h4>Course Views</h4>
             <p>
-              Use the preconfigured course views to visualise the shot and read the terrain.
+              Use the preconfigured course views to visualise the shot and read the terrain. 
+              Switch between different perspectives to plan your strategy.
             </p>
-            <Button variant="secondary" onClick={handleMapNext}>Got It</Button>
+            <Button variant="secondary" onClick={handleMapNext}>Next</Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Club selection tooltip phase
+  if (phase === 'club-selection-tooltip') {
+    return (
+      <div className="courseplay-warmup courseplay-warmup--tooltip">
+        <div className="tooltip-overlay">
+          <div 
+            className="tooltip-highlight tooltip-highlight--club-selection"
+            onClick={handleClubSelectionNext}
+          ></div>
+          <div className="tooltip-callout tooltip-callout--club-selection">
+            <h4>Club Selection</h4>
+            <p>
+              Choose your club from the bag. Your club data and distance capabilities are automatically displayed 
+              to help you make the right selection for each shot.
+            </p>
+            <Button variant="secondary" onClick={handleClubSelectionNext}>Next</Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Distance marker tooltip phase
+  if (phase === 'distance-marker-tooltip') {
+    return (
+      <div className="courseplay-warmup courseplay-warmup--tooltip">
+        <div className="tooltip-overlay">
+          <div 
+            className="tooltip-highlight tooltip-highlight--distance-marker"
+            onClick={handleDistanceMarkerNext}
+          ></div>
+          <div className="tooltip-callout tooltip-callout--distance-marker">
+            <h4>Distance Markers</h4>
+            <p>
+              Pay attention to the distance markers on the course. They show yardage to the front, center, 
+              and back of the green, helping you select the right club and plan your approach.
+            </p>
+            <Button variant="secondary" onClick={handleDistanceMarkerNext}>Got It</Button>
           </div>
         </div>
       </div>
@@ -301,9 +385,9 @@ export const CourseplayWarmup: React.FC = () => {
       )}
       <div className="courseplay-warmup__info">
         <div className="hole-info">
-          <span className="hole-info__label">HOLE 7</span>
-          <span className="hole-info__par">Par 3</span>
-          <span className="hole-info__distance">107 yards</span>
+          <span className="hole-info__label">HOLE 1</span>
+          <span className="hole-info__par">Par 4</span>
+          <span className="hole-info__distance">380 yards</span>
         </div>
       </div>
       <div className="courseplay-warmup__progress">

@@ -22,7 +22,18 @@ export const FlightPlansWidget: React.FC<FlightPlansWidgetProps> = ({
 }) => {
   const { visibleTasks, progress } = useFlightPlans()
   const { currentStep, setCurrentStep } = useOnboarding()
-  const [minimized, setMinimized] = useState(false)
+  const MINIMIZED_STORAGE_KEY = 'flightPlansMinimized'
+  
+  // Initialize minimized state from localStorage, default to true (minimized) on launcher
+  const [minimized, setMinimized] = useState(() => {
+    const stored = localStorage.getItem(MINIMIZED_STORAGE_KEY)
+    if (stored !== null) {
+      return stored === 'true'
+    }
+    // Default to minimized on launcher (complete step)
+    return currentStep === 'complete'
+  })
+  
   const [expandedTasks, setExpandedTasks] = useState<Set<string>>(new Set())
   const [isHidden, setIsHidden] = useState(() => {
     const stored = localStorage.getItem(HIDDEN_STORAGE_KEY)
@@ -32,12 +43,24 @@ export const FlightPlansWidget: React.FC<FlightPlansWidgetProps> = ({
   
   const isIntroStep = currentStep === 'flight-plans-intro'
 
+  // Persist minimized state to localStorage
+  useEffect(() => {
+    localStorage.setItem(MINIMIZED_STORAGE_KEY, String(minimized))
+  }, [minimized])
+
   // Keep widget collapsed/highlighted during intro
   useEffect(() => {
     if (isIntroStep) {
       setMinimized(true)
     }
   }, [isIntroStep])
+  
+  // Minimize during welcome step 2 and when on launcher (complete step)
+  useEffect(() => {
+    if (currentStep === 'welcome' || currentStep === 'complete') {
+      setMinimized(true)
+    }
+  }, [currentStep])
   
   // In transition mode, always show expanded and expand the just-completed task
   useEffect(() => {

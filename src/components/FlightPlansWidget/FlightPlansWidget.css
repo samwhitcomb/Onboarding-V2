@@ -22,8 +22,8 @@
   left: auto;
   bottom: auto;
   transform: none;
-  width: 55%;
-  max-width: 1100px;
+  width: 48%;
+  max-width: 800px;
   background: rgba(28, 28, 30, 0.8);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
@@ -334,9 +334,9 @@
   right: 14%;
   left: auto;
   transform: none;
-  width: 30%;
-  min-width: 400px;
-  max-width: 600px;
+  width: 26%;
+  min-width: 360px;
+  max-width: 520px;
   padding: var(--spacing-md) var(--spacing-lg);
   cursor: pointer;
 }

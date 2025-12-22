@@ -3,9 +3,10 @@ import './QuitButton.css'
 
 interface QuitButtonProps {
   onQuit?: () => void
+  sectionName?: string
 }
 
-export const QuitButton: React.FC<QuitButtonProps> = ({ onQuit }) => {
+export const QuitButton: React.FC<QuitButtonProps> = ({ onQuit, sectionName = 'session' }) => {
   const handleClick = () => {
     if (onQuit) {
       onQuit()
@@ -14,7 +15,7 @@ export const QuitButton: React.FC<QuitButtonProps> = ({ onQuit }) => {
 
   return (
     <div className="quit-layer" aria-live="polite">
-      <button className="quit-button" onClick={handleClick} aria-label="Quit onboarding">
+      <button className="quit-button" onClick={handleClick} aria-label={`Quit ${sectionName}`}>
         <svg
           width="20"
           height="20"

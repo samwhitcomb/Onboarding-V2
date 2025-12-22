@@ -22,6 +22,18 @@ export type OnboardingStep =
   | 'challenge-shot'
   | 'shot-result'
   | 'onboarding-complete'
+  | 'tutorial-practice'
+  | 'tutorial-range'
+  | 'tutorial-target-range'
+  | 'tutorial-courses'
+  | 'tutorial-ctp'
+  | 'practice-loading'
+  | 'range-loading'
+  | 'target-range-loading'
+  | 'ctp-loading'
+  | 'course-loading'
+  | 'course-selection'
+  | 'course-play-loading'
   | 'complete'
 
 interface OnboardingContextType {

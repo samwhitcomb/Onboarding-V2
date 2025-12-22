@@ -45,13 +45,12 @@
 .five-shot-baseline__actions {
   position: absolute;
   bottom: var(--spacing-2xl);
-  left: 50%;
-  transform: translateX(-50%);
+  left: var(--spacing-2xl);
   z-index: var(--z-popup);
   display: flex;
   flex-direction: column;
   pointer-events: auto;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--spacing-md);
 }
 

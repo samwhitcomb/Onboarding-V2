@@ -393,28 +393,8 @@ export const FlightPlansProvider: React.FC<{ children: React.ReactNode }> = ({ c
   // Don't clear inProgress when reaching complete - user might have quit
   // inProgress will be cleared when tasks are actually completed
 
-  // Seed completion based on onboarding milestones:
-  // - After data-review (5-shot baseline done) => mark "Guided First Flight" as completed
-  // - After challenge-shot/complete/celebration (Pebble Beach done) => mark "Morning at Pebble Beach" as completed
-  // Don't auto-complete if we're at welcome (fresh start)
-  // Don't auto-complete "Hole in one challenge" at 'complete' if First Flight isn't completed (Explore Freely scenario)
-  useEffect(() => {
-    if (currentStep === 'welcome') return // Fresh start, don't auto-complete
-    
-    if (currentStep === 'data-review' || currentStep === 'data-saving' || currentStep === 'loading') {
-      markTaskComplete('First Flight')
-    }
-    // Only mark "Hole in one challenge" as complete if First Flight is already completed
-    // This prevents marking it complete when clicking "Explore Freely" from welcome
-    if (currentStep === 'challenge-shot' || currentStep === 'celebration') {
-      markTaskComplete('Hole in one challenge')
-    } else if (currentStep === 'complete') {
-      // Only mark complete if First Flight is done (user actually went through onboarding)
-      if (statusMap['First Flight'] === 'completed') {
-        markTaskComplete('Hole in one challenge')
-      }
-    }
-  }, [currentStep, markTaskComplete, statusMap])
+  // Feature completion is now handled by FeatureCompletionContext via events
+  // No auto-completion based on onboarding steps - users complete features independently
 
   const value: FlightPlansContextValue = {
     tasks,

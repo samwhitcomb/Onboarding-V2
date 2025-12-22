@@ -7,17 +7,18 @@ import './QuitConfirmation.css'
 interface QuitConfirmationProps {
   onConfirm: () => void
   onCancel: () => void
+  sectionName?: string
 }
 
-export const QuitConfirmation: React.FC<QuitConfirmationProps> = ({ onConfirm, onCancel }) => {
+export const QuitConfirmation: React.FC<QuitConfirmationProps> = ({ onConfirm, onCancel, sectionName = 'Session' }) => {
   if (typeof document === 'undefined') return null
 
   return createPortal(
     <Modal onClose={onCancel} className="quit-confirmation-modal">
       <div className="quit-confirmation">
-        <h2 className="quit-confirmation__title">Pause Your Onboarding?</h2>
+        <h2 className="quit-confirmation__title">Pause {sectionName}?</h2>
         <p className="quit-confirmation__body">
-          Your progress is automatically saved. You can continue where you left off anytime through the Flight Plans.
+          Your progress is automatically saved. You can continue where you left off.
         </p>
         <div className="quit-confirmation__actions">
           <Button variant="secondary" onClick={onCancel}>
