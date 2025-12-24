@@ -233,6 +233,7 @@ const OnboardingFlow: React.FC = () => {
       case 'settings-check':
       case 'unit-preference':
       case 'display-confirmation':
+      case 'projector-settings-mask':
       case 'settings-tooltip':
         return (
           <SettingsCheckSequence 
@@ -330,6 +331,20 @@ const OnboardingFlow: React.FC = () => {
   }
 
   const getBackground = () => {
+    // Define mask elements for projector settings area
+    // Values are percentages of the original image dimensions (0-100)
+    const projectorSettingsMask = currentStep === 'projector-settings-mask' ? [
+      {
+        id: 'projector-settings',
+        top: 4,    // Percentage from top of image (moved upward)
+        left: 89,  // Percentage from left of image
+        width: 2.7, // Percentage of image width
+        height: 5, // Percentage of image height
+        highlight: true,
+        mode: 'spotlight' as const, // Clear inside, dark/blur outside
+      }
+    ] : []
+
     // Define mask elements for settings tooltip
     // Values are percentages of the original image dimensions (0-100)
     const settingsButtonMask = currentStep === 'settings-tooltip' ? [
@@ -416,21 +431,23 @@ const OnboardingFlow: React.FC = () => {
       {
         id: 'flight-plans-widget',
         top: 1,       // Align to minimized widget position
-        left: 56,     // 100 - right(14) - width(30) = 56
-        width: 30,    // Match minimized width
-        height: 12,   // Slightly taller for padding
+        left: 60,     // 100 - right(14) - width(30) = 56
+        width: 26,    // Match minimized width
+        height: 7,   // Slightly taller for padding
         highlight: true,
         mode: 'spotlight' as const,
       }
     ] : []
 
-    const activeMask = settingsButtonMask.length > 0 
-      ? settingsButtonMask 
-      : clubSelectionButtonMask.length > 0 
-        ? clubSelectionButtonMask 
-        : flightPlansMask.length > 0 
-          ? flightPlansMask 
-          : promptMasks
+    const activeMask = projectorSettingsMask.length > 0
+      ? projectorSettingsMask
+      : settingsButtonMask.length > 0 
+        ? settingsButtonMask 
+        : clubSelectionButtonMask.length > 0 
+          ? clubSelectionButtonMask 
+          : flightPlansMask.length > 0 
+            ? flightPlansMask 
+            : promptMasks
 
     switch (currentStep) {
       case 'welcome':
@@ -461,7 +478,7 @@ const OnboardingFlow: React.FC = () => {
       case 'tutorial-practice':
       case 'settings-check':
       case 'unit-preference':
-      case 'display-confirmation':
+      case 'projector-settings-mask':
       case 'settings-tooltip':
       case 'club-selection-intro':
       case 'club-selection-tooltip':
@@ -491,6 +508,9 @@ const OnboardingFlow: React.FC = () => {
             onButtonClick={handleButtonClick}
           />
         )
+      case 'display-confirmation':
+        // Display confirmation uses black background (handled by display-identification component)
+        return null
       case 'loading':
       case 'practice-loading':
       case 'range-loading':

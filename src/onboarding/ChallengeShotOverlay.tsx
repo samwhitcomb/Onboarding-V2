@@ -51,7 +51,7 @@ export const ChallengeShotOverlay: React.FC = () => {
             
             {/* <div className="challenge-shot-content__prize">
               <span className="challenge-shot-content__prize-icon">🏆</span>
-              <span className="challenge-shot-content__prize-text">1 Year SuperApp Membership</span>
+              <span className="challenge-shot-content__prize-text">1 Year Rapsodo Golf Suite Membership</span>
             </div> */}
           </div>
           

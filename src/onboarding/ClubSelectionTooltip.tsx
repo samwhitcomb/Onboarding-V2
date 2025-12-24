@@ -52,12 +52,8 @@ export const ClubSelectionTooltip: React.FC<ClubSelectionTooltipProps> = ({
       })
     }
     
+    // Calculate once - no resize listener for fixed window resolution
     calculateButtonPosition()
-    window.addEventListener('resize', calculateButtonPosition)
-    
-    return () => {
-      window.removeEventListener('resize', calculateButtonPosition)
-    }
   }, [currentStep])
 
   if (!buttonPosition) {

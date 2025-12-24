@@ -8,6 +8,7 @@ interface SessionRowProps {
   description?: string
   sessions: Session[]
   onSessionClick?: (session: Session) => void
+  onDeleteSession?: (sessionId: string) => void
   showArrows?: boolean
 }
 
@@ -16,6 +17,7 @@ export const SessionRow: React.FC<SessionRowProps> = ({
   description,
   sessions,
   onSessionClick,
+  onDeleteSession,
   showArrows = false,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -74,6 +76,8 @@ export const SessionRow: React.FC<SessionRowProps> = ({
               key={session.id}
               session={session}
               onClick={() => onSessionClick?.(session)}
+              onDelete={onDeleteSession}
+              isSampleData={true}
             />
           ))}
         </div>

@@ -4,8 +4,9 @@ export type OnboardingStep =
   | 'welcome'
   | 'flight-plans-intro'
   | 'settings-check'
-  | 'unit-preference'
   | 'display-confirmation'
+  | 'projector-settings-mask'
+  | 'unit-preference'
   | 'settings-tooltip'
   | 'club-selection-intro'
   | 'club-selection-tooltip'
@@ -100,8 +101,9 @@ export const OnboardingProvider: React.FC<{ children: ReactNode }> = ({ children
       'welcome',
       'flight-plans-intro',
       'settings-check',
-      'unit-preference',
       'display-confirmation',
+      'projector-settings-mask',
+      'unit-preference',
       'settings-tooltip',
       'club-selection-intro',
       'club-selection-tooltip',

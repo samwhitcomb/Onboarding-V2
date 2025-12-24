@@ -9,20 +9,42 @@ import {
 import { getCourseImage, defaultImages } from '../../utils/courseImages'
 import { Scorecard } from '../Scorecard/Scorecard'
 import { ClubCircles } from '../ClubCircles/ClubCircles'
+import { DeleteConfirmation } from '../DeleteConfirmation/DeleteConfirmation'
 import './SessionCard.css'
 
 interface SessionCardProps {
   session: Session
   onClick?: () => void
+  onDelete?: (sessionId: string) => void
   variant?: 'compact' | 'detailed'
+  isSampleData?: boolean
 }
 
 export const SessionCard: React.FC<SessionCardProps> = ({
   session,
   onClick,
+  onDelete,
   variant = 'compact',
+  isSampleData = false,
 }) => {
   const [isHovered, setIsHovered] = useState(false)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setShowDeleteConfirm(true)
+  }
+
+  const handleDeleteConfirm = () => {
+    if (onDelete) {
+      onDelete(session.id)
+    }
+    setShowDeleteConfirm(false)
+  }
+
+  const handleDeleteCancel = () => {
+    setShowDeleteConfirm(false)
+  }
 
   const formatDate = (date: Date): string => {
     const now = new Date()
@@ -189,8 +211,23 @@ export const SessionCard: React.FC<SessionCardProps> = ({
           <div className="session-card__live-badge">LIVE</div>
         )}
 
+        {isSampleData && (
+          <div className="session-card__sample-badge">Sample Data</div>
+        )}
+
         {isGameSession(session) && session.isPersonalBest && (
           <div className="session-card__pb-ribbon">New PB!</div>
+        )}
+
+        {isSampleData && isHovered && onDelete && (
+          <button
+            className="session-card__delete-button"
+            onClick={handleDeleteClick}
+            aria-label="Delete session"
+            title="Delete sample data"
+          >
+            ×
+          </button>
         )}
 
         {isCourseplaySession(session) && session.weather && (
@@ -248,6 +285,14 @@ export const SessionCard: React.FC<SessionCardProps> = ({
           </div>
         )}
       </div>
+      {showDeleteConfirm && (
+        <DeleteConfirmation
+          onConfirm={handleDeleteConfirm}
+          onCancel={handleDeleteCancel}
+          message="Delete this sample data session?"
+          title="Delete Session"
+        />
+      )}
     </div>
   )
 }

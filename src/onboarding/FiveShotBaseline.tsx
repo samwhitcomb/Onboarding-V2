@@ -62,7 +62,7 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
     }
   }, [promptIndex])
 
-  // Calculate button positions for prompt tooltips
+  // Calculate button positions for prompt tooltips (fixed positions, no resize handling)
   useEffect(() => {
     if (promptIndex === null) return
 
@@ -95,7 +95,7 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
 
       const positions: Record<string, { top: number; right: number; width: number; height: number }> = {}
 
-      // Club Data position
+      // Club Data position - calculate once and store as fixed pixel values
       const clubDataTopPx = (clubDataTop / 100) * containerHeight
       const clubDataLeftPx = (clubDataLeft / 100) * containerWidth
       const clubDataWidthPx = (clubDataWidth / 100) * containerWidth
@@ -134,12 +134,8 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
       setButtonPositions(positions)
     }
 
+    // Calculate once on mount/prompt change - no resize listener
     calculateButtonPositions()
-    window.addEventListener('resize', calculateButtonPositions)
-
-    return () => {
-      window.removeEventListener('resize', calculateButtonPositions)
-    }
   }, [promptIndex])
 
   const recordShot = useCallback((shotNumber: number) => {
@@ -299,10 +295,16 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
       // For prompts with mask elements, show tooltip near the element
       if (!buttonPosition) return null
 
+      // Use fixed pixel positions calculated once (no resize recalculation)
       const spacing = 8
       const arrowHeight = 8
       const hoverTop = buttonPosition.top - spacing
-      const tooltipTop = buttonPosition.top + buttonPosition.height + spacing + arrowHeight
+      
+      // Adjust tooltip position for dispersion view (move to the right and up)
+      const tooltipRightOffset = currentPrompt.id === 'dispersion-view' ? -700 : 0
+      const tooltipTopOffset = currentPrompt.id === 'dispersion-view' ? -400 : 0
+      const tooltipRight = buttonPosition.right + tooltipRightOffset
+      const tooltipTop = buttonPosition.top + buttonPosition.height + spacing + arrowHeight + tooltipTopOffset
 
       return (
         <>
@@ -311,7 +313,7 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
             <Popup 
               position="custom"
               arrow="none" 
-              className="popup--hover-callout"
+              className="popup--hover-callout popup--fixed-position"
               customPosition={{ 
                 top: `${hoverTop}px`, 
                 right: `${buttonPosition.right}px`,
@@ -331,9 +333,10 @@ export const FiveShotBaseline: React.FC<FiveShotBaselineProps> = ({
           <Popup 
             position="custom"
             arrow="top" 
+            className="popup--fixed-position"
             customPosition={{ 
               top: `${tooltipTop}px`, 
-              right: `${buttonPosition.right}px`,
+              right: `${tooltipRight}px`,
             }}
           >
             <div className="feature-popup">

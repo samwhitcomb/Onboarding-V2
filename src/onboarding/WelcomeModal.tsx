@@ -40,13 +40,13 @@ export const WelcomeModal: React.FC = () => {
         {step === 'intro' && (
           <>
             <h1 className="welcome-modal__headline">
-              Welcome to the SuperApp: Your Game Upgrade Begins Now.
+              Welcome to the Rapsodo Golf Suite
             </h1>
             <div className="welcome-modal__body">
               <p>
                 Congratulations! Your Rapsodo CLM unit is connected, calibrated, and ready for
                 high-precision performance. The hardware is set. Now, let us introduce you to the full
-                power of the SuperApp software.
+                power of the Rapsodo Golf Suite.
               </p>
               {/* <p className="welcome-modal__time">
                 We've designed a quick, guided initiation to unlock the app's core features. The entire
@@ -69,7 +69,7 @@ export const WelcomeModal: React.FC = () => {
             </h1>
             <div className="welcome-modal__body">
               <p>
-                Flight Plans act as a checklist to help you explore and master all the features of the SuperApp.
+                Flight Plans act as a checklist to help you explore and master all the features of the Rapsodo Golf Suite.
                 You can access your Flight Plans anytime from the widget in the top right corner.
               </p>
               <p>

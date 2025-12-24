@@ -27,7 +27,7 @@ export const FlightPlansIntro: React.FC = () => {
           <h2 className="flight-plans-intro-modal__title">Introducing Flight Plans</h2>
           <div className="flight-plans-intro-modal__body">
             <p>
-              The SuperApp contains dozens of powerful modes and features designed to refine your
+              The Rapsodo Golf Suite contains dozens of powerful modes and features designed to refine your
               swing and lower your scores. To help you master these, we've created some short guided pathways called <strong>'Flight Plans.'</strong>
             </p>
             <p>

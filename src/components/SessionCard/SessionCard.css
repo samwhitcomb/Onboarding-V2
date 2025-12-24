@@ -109,6 +109,22 @@
   }
 }
 
+.session-card__sample-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  background: rgba(255, 193, 7, 0.9);
+  color: #000;
+  font-size: 11px;
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
 .session-card__pb-ribbon {
   position: absolute;
   top: 12px;
@@ -287,6 +303,38 @@
   font-size: 12px;
   color: var(--accent-green);
   font-weight: var(--font-bold);
+}
+
+/* Delete Button */
+.session-card__delete-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(220, 53, 69, 0.9);
+  color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: var(--font-bold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.session-card__delete-button:hover {
+  background: rgba(220, 53, 69, 1);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.session-card__delete-button:active {
+  transform: scale(0.95);
 }
 
 /* Compact variant */

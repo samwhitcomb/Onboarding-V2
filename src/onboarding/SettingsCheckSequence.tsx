@@ -79,12 +79,8 @@ export const SettingsCheckSequence: React.FC<SettingsCheckSequenceProps> = ({
       })
     }
     
+    // Calculate once - no resize listener for fixed window resolution
     calculateButtonPosition()
-    window.addEventListener('resize', calculateButtonPosition)
-    
-    return () => {
-      window.removeEventListener('resize', calculateButtonPosition)
-    }
   }, [currentStep])
   
   useEffect(() => {
@@ -103,12 +99,21 @@ export const SettingsCheckSequence: React.FC<SettingsCheckSequenceProps> = ({
 
   useEffect(() => {
     if (currentStep === 'settings-check') {
-      setCurrentStep('unit-preference')
+      setCurrentStep('display-confirmation')
     }
   }, [currentStep, setCurrentStep])
 
   const handleUnitPreferencesComplete = () => {
-    setCurrentStep('display-confirmation')
+    // Calculate target position for settings button (top-right area)
+    // Settings button is at approximately top: 3.5%, right: 5.2%
+    setMinimizeTarget({ top: '3.5%', right: '5.2%' })
+    setIsMinimizing(true)
+    
+    // After animation completes, transition to settings tooltip
+    setTimeout(() => {
+      setIsMinimizing(false)
+      setCurrentStep('settings-tooltip')
+    }, 600)
   }
 
   const handleProjectorSelection = (displayNumber: number) => {
@@ -125,21 +130,17 @@ export const SettingsCheckSequence: React.FC<SettingsCheckSequenceProps> = ({
         setDisplayScreen('secondary')
       }
       
-      // Calculate target position for settings button (top-right area)
-      // Settings button is at approximately top: 3.5%, right: 5.2%
-      setMinimizeTarget({ top: '3.5%', right: '5.2%' })
-      setIsMinimizing(true)
-      
-      // After animation completes, transition to next step
-      setTimeout(() => {
-        setIsMinimizing(false)
-        setCurrentStep('settings-tooltip')
-      }, 600)
+      // Transition to projector settings mask step
+      setCurrentStep('projector-settings-mask')
     }
   }
 
+  const handleProjectorSettingsMaskComplete = () => {
+    setCurrentStep('unit-preference')
+  }
+
   const handleSettingsTooltipClose = () => {
-    setCurrentStep('club-selection-intro')
+    setCurrentStep('club-selection-tooltip')
   }
 
   if (currentStep === 'unit-preference') {
@@ -253,6 +254,24 @@ export const SettingsCheckSequence: React.FC<SettingsCheckSequenceProps> = ({
               Change Control Screen
             </button>
           </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (currentStep === 'projector-settings-mask') {
+    // This step shows a mask on the projector settings area
+    // The mask will be handled by OnboardingFlow's getBackground function
+    // We just need a simple component that advances after a delay or user interaction
+    return (
+      <div className="projector-settings-mask-step">
+        <div className="projector-settings-mask__content">
+          <p className="projector-settings-mask__instruction">
+            Projector settings are configured here. You can adjust display settings as needed.
+          </p>
+          <Button onClick={handleProjectorSettingsMaskComplete}>
+            Continue
+          </Button>
         </div>
       </div>
     )

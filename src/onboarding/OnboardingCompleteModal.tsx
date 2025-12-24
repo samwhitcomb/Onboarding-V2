@@ -25,7 +25,7 @@ export const OnboardingCompleteModal: React.FC = () => {
         
         <p className="onboarding-complete-modal__message">
           You've completed the quick start guide and experienced some core features 
-          and navigation within the SuperApp. Your baseline data is saved and ready to help you improve.
+          and navigation within the Rapsodo Golf Suite. Your baseline data is saved and ready to help you improve.
         </p>
 
         <div className="onboarding-complete-modal__next-steps">

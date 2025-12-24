@@ -17,6 +17,12 @@
   position: fixed;
 }
 
+.popup--fixed-position {
+  position: fixed !important;
+  /* Prevent recalculation on window resize */
+  will-change: auto;
+}
+
 .popup--highlight {
   /* Highlight removed - no pulsing effect */
 }

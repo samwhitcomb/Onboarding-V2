@@ -45,7 +45,7 @@ export const ExploreFreelyPrompt: React.FC<ExploreFreelyPromptProps> = ({ onDism
         <div className="explore-freely-prompt__icon">🎯</div>
         <div className="explore-freely-prompt__text">
           <p className="explore-freely-prompt__title">Choose a play mode and get playing!</p>
-          <p className="explore-freely-prompt__subtitle">Explore any feature you'd like to try</p>
+          {/* <p className="explore-freely-prompt__subtitle">Explore any feature you'd like to try</p> */}
         </div>
         <button 
           className="explore-freely-prompt__close"

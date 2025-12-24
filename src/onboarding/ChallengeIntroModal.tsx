@@ -32,7 +32,7 @@ export const ChallengeIntroModal: React.FC = () => {
         
         <div className="challenge-intro-modal__prize">
           <span className="challenge-intro-modal__prize-label">Hole-in-One Prize</span>
-          <span className="challenge-intro-modal__prize-value">1 Year SuperApp Membership</span>
+          <span className="challenge-intro-modal__prize-value">1 Year Rapsodo Golf Suite Membership</span>
         </div>
         
         <div className="challenge-intro-modal__actions">

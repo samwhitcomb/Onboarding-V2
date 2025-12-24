@@ -130,7 +130,7 @@ export const FlightPlansWidget: React.FC<FlightPlansWidgetProps> = ({
             {/* <h3 className="fp-widget__title">Onboarding Checklist</h3> */}
             {(!minimized || transitionMode) && (
               <p className="fp-widget__subtitle">
-                {transitionMode ? 'Flight plan complete! Here\'s what\'s next.' : 'Complete quests to master the SuperApp. Jump in any order.'}
+                {transitionMode ? 'Flight plan complete! Here\'s what\'s next.' : 'Complete quests to master the Rapsodo Golf Suite. Jump in any order.'}
               </p>
             )}
           </div>

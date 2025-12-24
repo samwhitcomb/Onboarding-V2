@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { GlobalFilter, FilterType } from '../components/GlobalFilter/GlobalFilter'
 import { CalendarFilter } from '../components/CalendarFilter/CalendarFilter'
 import { SessionRow } from '../components/SessionRow/SessionRow'
@@ -11,6 +11,7 @@ import {
   getGameSessions,
   filterBySimulator,
 } from '../data/mockSessions'
+import { deleteSession, filterDeletedSessions } from '../utils/sessionStorage'
 import './SessionsPage.css'
 
 interface SessionsPageProps {
@@ -23,10 +24,16 @@ export const SessionsPage: React.FC<SessionsPageProps> = ({ onSessionClick }) =>
     start: null,
     end: null,
   })
+  const [refreshKey, setRefreshKey] = useState(0) // Force re-render when sessions are deleted
 
   // Check if user has real sessions (for now, always show example data)
   // In a real app, this would check localStorage/API for user sessions
   const hasUserData = false // TODO: Implement real check
+
+  const handleDeleteSession = useCallback((sessionId: string) => {
+    deleteSession(sessionId)
+    setRefreshKey((prev) => prev + 1) // Trigger re-render
+  }, [])
 
   // Apply global filter
   const applyFilter = (sessions: Session[]): Session[] => {
@@ -64,16 +71,16 @@ export const SessionsPage: React.FC<SessionsPageProps> = ({ onSessionClick }) =>
   }
 
   // Row 1: Recent Activity (all sessions sorted by completion date)
-  const recentSessions = applyFilter(getRecentActivity())
+  const recentSessions = filterDeletedSessions(applyFilter(getRecentActivity()))
 
   // Row 2: Scorecard Gallery (courseplay sessions)
-  const courseplaySessions = applyFilter(getCourseplaySessions())
+  const courseplaySessions = filterDeletedSessions(applyFilter(getCourseplaySessions()))
 
   // Row 3: High-Performance Analytics (target range + combines)
-  const analyticsSessions = applyFilter(getAnalyticsSessions())
+  const analyticsSessions = filterDeletedSessions(applyFilter(getAnalyticsSessions()))
 
   // Row 4: Games & Challenges
-  const gameSessions = applyFilter(getGameSessions())
+  const gameSessions = filterDeletedSessions(applyFilter(getGameSessions()))
 
   return (
     <div className="sessions-page">
@@ -81,7 +88,7 @@ export const SessionsPage: React.FC<SessionsPageProps> = ({ onSessionClick }) =>
         <div className="sessions-page__banner">
           <div className="sessions-page__banner-content">
             <p className="sessions-page__banner-text">
-              You're viewing example data. Hit some shots to populate with your own sessions!
+              Start playing to populate with your own rounds and sessions!
             </p>
           </div>
         </div>
@@ -100,6 +107,7 @@ export const SessionsPage: React.FC<SessionsPageProps> = ({ onSessionClick }) =>
           description="All sessions sorted by completion date"
           sessions={recentSessions}
           onSessionClick={onSessionClick}
+          onDeleteSession={handleDeleteSession}
           showArrows={true}
         />
 
@@ -108,14 +116,16 @@ export const SessionsPage: React.FC<SessionsPageProps> = ({ onSessionClick }) =>
           description="Virtual rounds and real-world play"
           sessions={courseplaySessions}
           onSessionClick={onSessionClick}
+          onDeleteSession={handleDeleteSession}
           showArrows={true}
         />
 
         <SessionRow
-          title="High-Performance Analytics"
+          title="Practice Sessions"
           description="Target practice and combine assessments"
           sessions={analyticsSessions}
           onSessionClick={onSessionClick}
+          onDeleteSession={handleDeleteSession}
           showArrows={true}
         />
 
@@ -124,6 +134,7 @@ export const SessionsPage: React.FC<SessionsPageProps> = ({ onSessionClick }) =>
           description="Closest to Pin, Longest Drive, and more"
           sessions={gameSessions}
           onSessionClick={onSessionClick}
+          onDeleteSession={handleDeleteSession}
           showArrows={true}
         />
       </div>
